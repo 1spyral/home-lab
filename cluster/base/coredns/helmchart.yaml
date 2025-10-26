@@ -1,0 +1,55 @@
+apiVersion: helm.cattle.io/v1
+kind: HelmChart
+metadata:
+  name: coredns
+  namespace: kube-system
+spec:
+  chart: coredns
+  repo: https://coredns.github.io/helm
+  version: 1.45.0
+  targetNamespace: kube-system
+  valuesContent: |-
+    replicaCount: 2
+    isClusterService: true
+    service:
+      name: kube-dns
+      clusterIP: 10.43.0.10
+    rbac:
+      create: true
+    serviceAccount:
+      create: true
+      name: coredns
+    containerSecurityContext:
+      allowPrivilegeEscalation: false
+      readOnlyRootFilesystem: true
+      runAsNonRoot: true
+      runAsUser: 65534
+      capabilities:
+        drop: ["ALL"]
+        add: ["NET_BIND_SERVICE"]
+    servers:
+      - zones:
+          - zone: "."
+        port: 53
+        plugins:
+          - name: log  # remove after DNS is stable
+          - name: errors
+          - name: health
+            configBlock: |
+              lameduck 5s
+          - name: ready
+          - name: kubernetes
+            parameters: cluster.local in-addr.arpa ip6.arpa
+            configBlock: |
+              pods insecure   # remove after DNS is stable
+              fallthrough in-addr.arpa ip6.arpa
+              ttl 30
+          - name: prometheus
+            parameters: 0.0.0.0:9153
+          - name: forward
+            parameters: . /etc/resolv.conf
+          - name: cache
+            parameters: 30
+          - name: loop
+          - name: reload
+          - name: loadbalance

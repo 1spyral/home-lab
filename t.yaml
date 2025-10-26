@@ -1,0 +1,20 @@
+# kube-dns-bridge.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: kube-dns
+  namespace: kube-system
+  labels:
+    k8s-app: kube-dns
+spec:
+  clusterIP: 10.43.0.10
+  selector:
+    app.kubernetes.io/name: coredns
+    app.kubernetes.io/instance: coredns-temp   # <--- IMPORTANT: matches your Helm release
+  ports:
+    - name: dns
+      port: 53
+      protocol: UDP
+    - name: dns-tcp
+      port: 53
+      protocol: TCP
