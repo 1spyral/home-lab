@@ -1,0 +1,10 @@
+{
+  "private": true,
+  "scripts": {
+    "lint": "yamllint .",
+    "format": "prettier --write '**/*.{yaml,yml,json,md}'"
+  },
+  "devDependencies": {
+    "prettier": "3.6.2"
+  }
+}
