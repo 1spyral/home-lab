@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: whoami
+  namespace: default
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-dns01-prod
+spec:
+  ingressClassName: traefik
+  tls:
+    - hosts:
+        - lukezhan.me
+      secretName: whoami-tls
+  rules:
+    - host: lukezhan.me
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: whoami
+                port:
+                  number: 80
