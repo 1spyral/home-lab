@@ -1,0 +1,9 @@
+creation_rules:
+  - path_regex: (cluster/.*/.*|apps/.*/.*)\.ya?ml$
+    encrypted_regex: "^(data|stringData)$"
+    kms: []
+    gcp_kms: []
+    azure_keyvault: []
+    hc_vault: []
+    age: ["age18z3fy59zgysfr8jj3wlpsha2hjqjwm6glaes29wefxa3fadd6a4qnyh873"]
+    pgp: []

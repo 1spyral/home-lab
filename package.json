@@ -4,7 +4,9 @@
     "start": "scripts/kube-tunnel.sh",
     "lint": "yamllint .",
     "traefik": "scripts/traefik-dashboard.sh",
-    "format": "prettier --write '**/*.{yaml,yml,json,md}'"
+    "format": "prettier --write '**/*.{yaml,yml,json,md}'",
+    "encrypt": "scripts/sops-encrypt.sh",
+    "decrypt": "scripts/sops-decrypt.sh"
   },
   "devDependencies": {
     "prettier": "3.6.2"
