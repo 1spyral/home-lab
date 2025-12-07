@@ -2,7 +2,7 @@
   "private": true,
   "scripts": {
     "start": "scripts/kube-tunnel.sh",
-    "lint": "yamllint **/*.{yaml,yml}",
+    "lint": "yamllint .",
     "traefik": "scripts/traefik-dashboard.sh",
     "format": "prettier --write '**/*.{yaml,yml,json,md}'"
   },
