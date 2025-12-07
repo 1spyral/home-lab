@@ -1,0 +1,2 @@
+# Avoid formatting encrypted SOPS files
+**/*.enc.yaml

@@ -4,4 +4,4 @@ kind: Kustomization
 resources:
   - helmchart.yaml
   - clusterissuers.yaml
-  - cloudflare-api-token-secret.yaml
+  - cloudflare-api-token-secret.enc.yaml
