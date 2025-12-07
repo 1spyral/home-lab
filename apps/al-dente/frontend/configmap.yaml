@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: al-dente-frontend-config
+  namespace: al-dente
+data:
+  NODE_ENV: "production"

@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: al-dente-backend
+  labels:
+    app: al-dente
+    tier: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: al-dente
+      tier: backend
+  template:
+    metadata:
+      labels:
+        app: al-dente
+        tier: backend
+    spec:
+      containers:
+        - name: backend
+          image: ghcr.io/al-dente-ai/al-dente-backend:latest
+          imagePullPolicy: IfNotPresent
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
+          ports:
+            - containerPort: 3000
+          env:
+            - name: NODE_ENV
+              value: "production"
+          envFrom:
+            - configMapRef:
+                name: al-dente-backend-config
+            - secretRef:
+                name: al-dente-backend-secrets
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 3000
+            initialDelaySeconds: 3
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 3000
+            initialDelaySeconds: 10
+            periodSeconds: 20

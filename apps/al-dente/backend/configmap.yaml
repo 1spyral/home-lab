@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: al-dente-backend-config
+  namespace: al-dente
+data:
+  NODE_ENV: "production"
+  PORT: "3000"
+  LOG_LEVEL: "info"
+  FRONTEND_ORIGIN: "https://al-dente.site"
