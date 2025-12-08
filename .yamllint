@@ -2,4 +2,9 @@ extends: default
 
 rules:
   document-start:
-    present: false
+    present: true
+
+ignore: |
+  .yamllint
+  .sops.yaml
+  **/*.enc.yaml
