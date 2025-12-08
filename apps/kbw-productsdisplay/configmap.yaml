@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kbw-productsdisplay-config
+data:
+  NODE_ENV: "production"
+  NAME: "Keauty Beauty Warehouse"
+  COPYRIGHT: "Keauty Beauty Warehouse"
+  NEXT_PUBLIC_IMAGE_PATH: "https://cdn.keautybeautywarehouse.com/images/"

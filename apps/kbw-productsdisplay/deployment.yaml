@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kbw-productsdisplay
+  labels:
+    app: kbw-productsdisplay
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kbw-productsdisplay
+  template:
+    metadata:
+      labels:
+        app: kbw-productsdisplay
+    spec:
+      imagePullSecrets:
+        - name: ghcr-pull-secret
+      containers:
+        - name: next
+          image: ghcr.io/1spyral/kbw-productsdisplay:latest
+          imagePullPolicy: IfNotPresent
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
+          ports:
+            - containerPort: 3000
+          env:
+            - name: NODE_ENV
+              value: "production"
+          envFrom:
+            - configMapRef:
+                name: kbw-productsdisplay-config
+            - secretRef:
+                name: kbw-productsdisplay-secrets
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 3000
+            initialDelaySeconds: 3
+            periodSeconds: 30
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 3000
+            initialDelaySeconds: 10
+            periodSeconds: 30
