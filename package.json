@@ -2,11 +2,12 @@
   "private": true,
   "scripts": {
     "start": "scripts/kube-tunnel.sh",
+    "deploy": "scripts/deploy.sh",
+    "encrypt": "scripts/sops-encrypt.sh",
+    "decrypt": "scripts/sops-decrypt.sh",
     "lint": "yamllint .",
     "traefik": "scripts/traefik-dashboard.sh",
-    "format": "prettier --write '**/*.{yaml,yml,json,md}'",
-    "encrypt": "scripts/sops-encrypt.sh",
-    "decrypt": "scripts/sops-decrypt.sh"
+    "format": "prettier --write '**/*.{yaml,yml,json,md}'"
   },
   "devDependencies": {
     "prettier": "3.6.2"
