@@ -4,7 +4,7 @@ kind: Ingress
 metadata:
   name: kbw-productsdisplay
   annotations:
-    cert-manager.io/cluster-issuer: letsencrypt-prod
+    cert-manager.io/cluster-issuer: letsencrypt-dns01-prod
 spec:
   ingressClassName: traefik
   tls:
