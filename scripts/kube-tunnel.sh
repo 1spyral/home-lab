@@ -6,11 +6,11 @@ set -euo pipefail
 
 show_help() {
 	cat <<EOF
-Usage: $(basename "$0") --server SERVER --user USER [options]
+Usage: $(basename "$0") [options]
 
-Required:
-  --server, -s, -h    Server IP or DNS
-  --user, -u          SSH username
+Arguments (required unless set via environment variables):
+  --server, -s, -h    Server IP or DNS (or set \$KUBE_SERVER_IP)
+  --user, -u          SSH username (or set \$KUBE_USER)
 
 Options:
   --port, -p          SSH port (default: 22)
@@ -19,13 +19,22 @@ Options:
   --remote-port, -r   Remote API port on the server (default: 6443)
   --help              Show this help message
 
-Example:
+Examples:
+  # Using environment variables
+  export KUBE_SERVER_IP=203.0.113.10
+  export KUBE_USER=ubuntu
+  $(basename "$0")
+
+  # Using command-line arguments
   $(basename "$0") --server 203.0.113.10 --user ubuntu -i ~/.ssh/id_rsa
+
   # Then point kubectl to https://127.0.0.1:6443
 EOF
 }
 
-# Defaults
+# Defaults (can be overridden by environment variables or command-line args)
+SERVER="${KUBE_SERVER_IP:-}"
+USER="${KUBE_USER:-}"
 PORT=22
 LOCAL_PORT=6443
 REMOTE_PORT=6443
