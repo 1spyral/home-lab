@@ -7,8 +7,9 @@ namespace: kbw-productsdisplay
 resources:
   - namespace.yaml
   - configmap.yaml
-  - secrets.enc.yaml
-  - ghcr-pull-secret.enc.yaml
   - deployment.yaml
   - service.yaml
   - ingress.yaml
+
+generators:
+  - ksops-generator.yaml
