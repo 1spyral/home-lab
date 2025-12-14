@@ -19,7 +19,7 @@ spec:
         - name: ghcr-pull-secret
       containers:
         - name: next
-          image: ghcr.io/1spyral/kbw-productsdisplay@sha256:60a30445e097b2cdb1dfa1045055f05208d75931703d8ee738832f6524a9e07b
+          image: ghcr.io/1spyral/kbw-productsdisplay@sha256:60a502717763a6407cf914b6fce8878ee7cfd31ab3756efb01ff735539ce185b
           imagePullPolicy: IfNotPresent
           resources:
             requests:
