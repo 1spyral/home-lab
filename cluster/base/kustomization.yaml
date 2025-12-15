@@ -5,4 +5,4 @@ kind: Kustomization
 resources:
   - coredns/
   - traefik/
-  - cert-manager/
+  # - cert-manager/
