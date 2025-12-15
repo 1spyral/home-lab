@@ -5,6 +5,4 @@ kind: Kustomization
 resources:
   - helmchart.yaml
   - clusterissuers.yaml
-
-generators:
-  - ksops-generator.yaml
+  - cloudflare-api-token-secret.enc.yaml

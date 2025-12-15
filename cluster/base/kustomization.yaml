@@ -6,4 +6,4 @@ resources:
   - coredns/
   - traefik/
   - flux-system/
-  # - cert-manager/
+  - cert-manager/
