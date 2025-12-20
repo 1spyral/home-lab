@@ -8,3 +8,5 @@ ignore: |
   .yamllint
   .sops.yaml
   **/*.enc.yaml
+  gotk-components.yaml
+  .github/*
