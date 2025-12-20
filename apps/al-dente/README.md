@@ -14,5 +14,5 @@ Al Dente is a vibe-coded pantry tracking and recipe generation app made by [Will
 **Apply**
 
 ```sh
-kubectl apply -k apps/al-dente
+kubectl apply -k apps/base/al-dente
 ```
