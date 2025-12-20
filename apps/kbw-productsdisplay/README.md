@@ -13,5 +13,5 @@ Hosting for my dad's beauty supply business, Keauty Beauty Warehouse. Runs on Pr
 **Apply**
 
 ```sh
-kubectl apply -k apps/kbw-productsdisplay
+kubectl apply -k apps/base/kbw-productsdisplay
 ```
