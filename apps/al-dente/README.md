@@ -6,10 +6,10 @@ Al Dente is a vibe-coded pantry tracking and recipe generation app made by [Will
 
 **Components**
 
-| Component | Port | Path   | Image                                          |
-| --------- | ---- | ------ | ---------------------------------------------- |
-| frontend  | 3000 | `/`    | `ghcr.io/al-dente-ai/al-dente-frontend:latest` |
-| backend   | 3000 | `/api` | `ghcr.io/al-dente-ai/al-dente-backend:latest`  |
+| Component | Port | Path   | Image                                   |
+| --------- | ---- | ------ | --------------------------------------- |
+| frontend  | 3000 | `/`    | `ghcr.io/al-dente-ai/al-dente-frontend` |
+| backend   | 3000 | `/api` | `ghcr.io/al-dente-ai/al-dente-backend`  |
 
 **Apply**
 

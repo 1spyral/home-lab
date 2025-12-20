@@ -6,9 +6,9 @@ Hosting for my dad's beauty supply business, Keauty Beauty Warehouse. Runs on Pr
 
 **Components**
 
-| Component | Port | Path | Image                                        |
-| --------- | ---- | ---- | -------------------------------------------- |
-| next      | 3000 | `/`  | `ghcr.io/1spyral/kbw-productsdisplay:latest` |
+| Component | Port | Path | Image                                 |
+| --------- | ---- | ---- | ------------------------------------- |
+| next      | 3000 | `/`  | `ghcr.io/1spyral/kbw-productsdisplay` |
 
 **Apply**
 

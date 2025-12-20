@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: ghcr.io/al-dente-ai/al-dente-frontend:latest
+          image: ghcr.io/al-dente-ai/al-dente-frontend
           imagePullPolicy: IfNotPresent
           resources:
             requests:
