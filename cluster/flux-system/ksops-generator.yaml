@@ -1,0 +1,8 @@
+---
+apiVersion: viaduct.ai/v1
+kind: ksops
+metadata:
+  name: ksops-secret-generator
+files:
+  - flux-system-secret.enc.yaml
+  - sops-age-secret.enc.yaml
