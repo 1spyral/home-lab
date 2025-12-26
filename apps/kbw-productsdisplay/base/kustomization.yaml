@@ -2,14 +2,10 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
-namespace: kbw-productsdisplay
-
 resources:
-  - namespace.yaml
+  - ghcr-pull-secret.enc.yaml
+  - secrets.enc.yaml
   - configmap.yaml
   - deployment.yaml
   - service.yaml
   - ingress.yaml
-
-generators:
-  - ksops-generator.yaml

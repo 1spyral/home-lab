@@ -1,0 +1,18 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: kbw-productsdisplay
+
+resources:
+  - ../../base
+  - namespace.yaml
+
+patchesStrategicMerge:
+  - ghcr-pull-secret.enc.yaml
+  - configmap.yaml
+  - secrets.enc.yaml
+
+images:
+  - name: ghcr.io/1spyral/kbw-productsdisplay
+    newTag: latest
