@@ -7,6 +7,7 @@ namespace: al-dente
 resources:
   - ../../base
   - namespace.yaml
+  - secrets.enc.yaml
 
 images:
   - name: ghcr.io/al-dente-ai/al-dente-backend

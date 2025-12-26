@@ -6,6 +6,3 @@ resources:
   - configmap.yaml
   - deployment.yaml
   - service.yaml
-
-generators:
-  - ksops-generator.yaml
