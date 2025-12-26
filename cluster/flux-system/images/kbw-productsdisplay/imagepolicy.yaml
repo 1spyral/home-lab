@@ -1,0 +1,16 @@
+---
+apiVersion: image.toolkit.fluxcd.io/v1
+kind: ImagePolicy
+metadata:
+  name: kbw-productsdisplay
+  namespace: flux-system
+spec:
+  interval: 1m
+  imageRepositoryRef:
+    name: kbw-productsdisplay
+  filterTags:
+    pattern: "^latest$"
+  policy:
+    alphabetical:
+      order: asc
+  digestReflectionPolicy: Always

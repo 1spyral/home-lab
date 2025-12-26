@@ -2,12 +2,10 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
-namespace: flux-system
-
 resources:
-  - gotk-components.yaml
-  - gotk-sync.yaml
-  - images/
+  - imagerepo.yaml
+  - imagepolicy.yaml
+  - imageupdateautomation.yaml
 
 generators:
   - ksops-generator.yaml
