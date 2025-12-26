@@ -8,5 +8,5 @@ Bootstrapping steps (WIP):
 - Apply CoreDNS
 - Generate SOPS key
 - Set up Cloudflare API token in infra/cert-manager
-- Set up GitHub PAT in cluster/flux-system
+- Set up GitHub SSH key in cluster/flux-system
 - Apply cluster/flux-system
