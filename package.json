@@ -2,6 +2,8 @@
   "private": true,
   "scripts": {
     "start": "scripts/kube-tunnel.sh",
+    "reconcile:source": "flux reconcile source git flux-system -n flux-system",
+    "reconcile:flux": "flux reconcile kustomization flux-system -n flux-system --with-source",
     "deploy": "scripts/deploy.sh",
     "encrypt": "scripts/sops-encrypt.sh",
     "decrypt": "scripts/sops-decrypt.sh",
