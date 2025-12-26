@@ -4,3 +4,4 @@ kind: Kustomization
 
 resources:
   - al-dente.yaml
+  - kbw-productsdisplay.yaml
