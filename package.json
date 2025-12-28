@@ -9,6 +9,7 @@
     "decrypt": "scripts/sops-decrypt.sh",
     "lint": "yamllint .",
     "traefik": "scripts/traefik-dashboard.sh",
+    "longhorn": "scripts/longhorn-dashboard.sh",
     "format": "prettier --write '**/*.{yaml,yml,json,md}'"
   },
   "devDependencies": {
