@@ -5,6 +5,13 @@
 
 # Default port
 PORT=8080
+REMOTE_PORT=8080
+
+print_usage() {
+    echo "Usage: $0 [-p port] [-h]"
+    echo "  -p port    Local port to use for port-forwarding (default: 8080)"
+    echo "  -h         Show this help message"
+}
 
 # Parse command line arguments
 while getopts "p:h" opt; do
@@ -13,22 +20,21 @@ while getopts "p:h" opt; do
             PORT="$OPTARG"
             ;;
         h)
-            echo "Usage: $0 [-p port]"
-            echo "  -p port    Port to use for port-forwarding (default: 8080)"
+            print_usage
             exit 0
             ;;
         \?)
             echo "Invalid option: -$OPTARG" >&2
-            echo "Usage: $0 [-p port]"
+            print_usage
             exit 1
             ;;
     esac
 done
 
-echo "Starting port-forward for Traefik dashboard on port $PORT..."
+echo "Starting port-forward for Traefik dashboard on port $PORT (remote port $REMOTE_PORT)..."
 
 # Start port-forward in the background
-kubectl -n networking port-forward deploy/traefik $PORT:8080 &
+kubectl -n networking port-forward deploy/traefik $PORT:"$REMOTE_PORT" &
 PORT_FORWARD_PID=$!
 
 # Wait a moment for port-forward to establish
