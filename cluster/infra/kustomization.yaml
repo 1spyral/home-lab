@@ -5,4 +5,5 @@ kind: Kustomization
 resources:
   - ../../infra/cert-manager/
   - ../../infra/coredns/
+  - ../../infra/longhorn/
   - ../../infra/traefik/
