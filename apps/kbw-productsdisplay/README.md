@@ -6,9 +6,9 @@ Hosting for my dad's beauty supply business, Keauty Beauty Warehouse. Runs on Pr
 
 **Components**
 
-| Component | Port | Path | Image                                 |
-| --------- | ---- | ---- | ------------------------------------- |
-| next      | 3000 | `/`  | `ghcr.io/1spyral/kbw-productsdisplay` |
+| Component | Port | Path                | Ingress Endpoint                     | Image                                 |
+| --------- | ---- | ------------------- | ------------------------------------ | ------------------------------------- |
+| next      | 3000 | `base/service.yaml` | `https://keautybeautywarehouse.com/` | `ghcr.io/1spyral/kbw-productsdisplay` |
 
 **Apply**
 
