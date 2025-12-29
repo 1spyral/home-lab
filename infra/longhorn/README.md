@@ -6,9 +6,9 @@ Longhorn supplies cluster-local block storage via the Flux-managed HelmRelease, 
 
 **Components**
 
-| Component   | Path               | Notes                                                                     |
-| ----------- | ------------------ | ------------------------------------------------------------------------- |
-| HelmRelease | `helmrelease.yaml` | Installs/updates Longhorn into `longhorn-system`, retrying up to 3 times. |
+| Component   | Path               | Notes                                                       |
+| ----------- | ------------------ | ----------------------------------------------------------- |
+| HelmRelease | `helmrelease.yaml` | Installs/updates Longhorn into `longhorn-system` namespace. |
 
 **Apply**
 
