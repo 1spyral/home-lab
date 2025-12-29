@@ -8,3 +8,4 @@ resources:
   - ../../infra/helm-repos/
   - ../../infra/longhorn/
   - ../../infra/traefik/
+  - ../../infra/pg/
