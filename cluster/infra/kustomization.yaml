@@ -9,3 +9,5 @@ resources:
   - ../../infra/longhorn/
   - ../../infra/traefik/
   - ../../infra/pg/
+  # Postgres instances
+  - ../../infra/pg/overlays/shared/instance

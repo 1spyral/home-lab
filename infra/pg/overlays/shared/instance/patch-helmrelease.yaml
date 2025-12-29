@@ -1,0 +1,3 @@
+- op: replace
+  path: /spec/values/fullnameOverride
+  value: pg-shared
