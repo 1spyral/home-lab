@@ -4,6 +4,7 @@ kind: Kustomization
 
 resources:
   - ../../infra/cert-manager/
+  - ../../infra/cnpg/
   - ../../infra/coredns/
   - ../../infra/helm-repos/
   - ../../infra/longhorn/
