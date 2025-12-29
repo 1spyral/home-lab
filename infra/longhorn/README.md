@@ -6,10 +6,9 @@ Longhorn supplies cluster-local block storage via the Flux-managed HelmRelease, 
 
 **Components**
 
-| Component    | Path                | Notes                                                                      |
-| ------------ | ------------------- | -------------------------------------------------------------------------- |
-| HelmRelease  | `helmrelease.yaml`  | Installs/updates Longhorn into `longhorn-system`, retrying up to 3 times.  |
-| StorageClass | `storageclass.yaml` | Declares `longhorn` as the default StorageClass with `driver.longhorn.io`. |
+| Component   | Path               | Notes                                                                     |
+| ----------- | ------------------ | ------------------------------------------------------------------------- |
+| HelmRelease | `helmrelease.yaml` | Installs/updates Longhorn into `longhorn-system`, retrying up to 3 times. |
 
 **Apply**
 
