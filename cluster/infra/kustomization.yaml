@@ -10,4 +10,4 @@ resources:
   - ../../infra/traefik/
   - ../../infra/pg/
   # Postgres instances
-  - ../../infra/pg/overlays/shared/instance
+  # - ../../infra/pg/overlays/shared/instance
