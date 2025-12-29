@@ -5,5 +5,6 @@ kind: Kustomization
 namespace: flux-system
 
 resources:
-  - bitnami.yaml
+  # - bitnami.yaml
+  - cnpg.yaml
   - longhorn.yaml
