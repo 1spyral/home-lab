@@ -3,6 +3,14 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-  - helmchart.yaml
+  - helmrelease.yaml
   - clusterissuers.yaml
   - cloudflare-api-token-secret.enc.yaml
+
+configMapGenerator:
+  - name: cert-manager-values
+    files:
+      - values.yaml
+    namespace: flux-system
+generatorOptions:
+  disableNameSuffixHash: true
