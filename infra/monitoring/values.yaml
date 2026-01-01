@@ -1,0 +1,18 @@
+fullnameOverride: kube-prometheus-stack
+
+grafana:
+  enabled: true
+
+prometheus:
+  enabled: true
+  prometheusSpec:
+    retentionSize: 30GiB
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          resources:
+            requests:
+              storage: 50Gi
+
+alertmanager:
+  enabled: true
