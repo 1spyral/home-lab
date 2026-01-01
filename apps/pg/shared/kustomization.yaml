@@ -2,7 +2,8 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
+namespace: pg-shared
+
 resources:
-  - al-dente.yaml
-  - kbw-productsdisplay.yaml
-  - pg-shared.yaml
+  - namespace.yaml
+  - postgres-cluster.yaml
