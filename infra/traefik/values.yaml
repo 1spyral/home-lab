@@ -22,11 +22,16 @@ ports:
 deployment:
   hostNetwork: true
 
+api:
+  dashboard: true
+
+metrics:
+  prometheus:
+    enabled: true
+
 additionalArguments:
   - --api.insecure=true
-  - --api.dashboard=true
   - --ping=true
-  - --metrics.prometheus=true
   - --providers.kubernetescrd
   - --providers.kubernetescrd.allowEmptyServices=true
   - --providers.kubernetesingress
@@ -38,6 +43,3 @@ additionalArguments:
   - --entrypoints.web.http.redirections.entrypoint.to=websecure
   - --entrypoints.web.http.redirections.entrypoint.scheme=https
   - --entrypoints.web.http.redirections.entrypoint.permanent=true
-
-api:
-  dashboard: true
