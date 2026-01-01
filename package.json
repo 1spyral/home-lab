@@ -8,8 +8,9 @@
     "encrypt": "scripts/sops-encrypt.sh",
     "decrypt": "scripts/sops-decrypt.sh",
     "lint": "yamllint .",
-    "traefik": "scripts/traefik-dashboard.sh",
+    "grafana": "scripts/grafana-dashboard.sh",
     "longhorn": "scripts/longhorn-dashboard.sh",
+    "traefik": "scripts/traefik-dashboard.sh",
     "format": "prettier --write '**/*.{yaml,yml,json,md}'",
     "format:check": "prettier --check '**/*.{yaml,yml,json,md}'"
   },
