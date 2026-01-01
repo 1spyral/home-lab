@@ -9,3 +9,4 @@ resources:
   - cnpg.yaml
   - longhorn.yaml
   - prometheus-community.yaml
+  - traefik.yaml
