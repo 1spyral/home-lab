@@ -7,7 +7,7 @@
 PORT=3000
 HOST="127.0.0.1"
 NAMESPACE="monitoring"
-SERVICE="monitoring-kube-prometheus-stack-grafana"
+SERVICE="kube-prometheus-stack-grafana"
 REMOTE_PORT=80
 
 print_usage() {
