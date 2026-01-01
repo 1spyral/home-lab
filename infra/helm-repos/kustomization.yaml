@@ -8,3 +8,4 @@ resources:
   # - bitnami.yaml
   - cnpg.yaml
   - longhorn.yaml
+  - prometheus-community.yaml
