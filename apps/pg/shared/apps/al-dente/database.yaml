@@ -8,3 +8,4 @@ spec:
   owner: al-dente
   cluster:
     name: pg-shared
+  ensure: absent
