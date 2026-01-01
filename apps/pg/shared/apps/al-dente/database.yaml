@@ -8,3 +8,8 @@ spec:
   owner: al_dente
   cluster:
     name: pg-shared
+  extensions:
+    - name: "uuid-ossp"
+      ensure: present
+    - name: pg_trgm
+      ensure: present
