@@ -1,6 +1,15 @@
 ---
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+
 resources:
   - namespace.yaml
   - helmrelease.yaml
+
+configMapGenerator:
+  - name: longhorn-values
+    files:
+      - values.yaml
+    namespace: flux-system
+generatorOptions:
+  disableNameSuffixHash: true

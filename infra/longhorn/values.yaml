@@ -1,0 +1,10 @@
+defaultSettings:
+  defaultDataPath: /var/lib/longhorn
+  defaultReplicaCount: 1
+  replicaSoftAntiAffinity: true
+
+persistence:
+  defaultClass: true
+  defaultClassReplicaCount: 1
+  allowVolumeExpansion: true
+  volumeBindingMode: WaitForFirstConsumer

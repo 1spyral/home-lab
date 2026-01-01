@@ -25,14 +25,7 @@ spec:
     remediation:
       retries: 3
 
-  values:
-    defaultSettings:
-      defaultDataPath: /var/lib/longhorn
-      defaultReplicaCount: 1
-      replicaSoftAntiAffinity: true
-
-    persistence:
-      defaultClass: true
-      defaultClassReplicaCount: 1
-      allowVolumeExpansion: true
-      volumeBindingMode: WaitForFirstConsumer
+  valuesFrom:
+    - kind: ConfigMap
+      name: longhorn-values
+      valuesKey: values.yaml
