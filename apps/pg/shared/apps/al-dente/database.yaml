@@ -1,0 +1,10 @@
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Database
+metadata:
+  name: pg-shared-al-dente
+spec:
+  name: al-dente
+  owner: al-dente
+  cluster:
+    name: pg-shared
