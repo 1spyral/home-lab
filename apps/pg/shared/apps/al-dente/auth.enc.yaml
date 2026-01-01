@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Secret
+metadata:
+    name: pg-shared-al-dente-auth
+    labels:
+        cnpg.io/reload: "true"
+type: kubernetes.io/basic-auth
+stringData:
+    username: ENC[AES256_GCM,data:KEFh3fnKLgE=,iv:0z8MdBRBHnz0fVd6aWZ4u0VRgMDOa9mRd/aLJPdf1LE=,tag:2ecLo4mLkDjQ64vppphKvw==,type:str]
+    password: ENC[AES256_GCM,data:D0lcHG9C9MOyjp36diOmfQnw,iv:JjjRXjLdIKEpmJh+yzqied4jgL4kr8zJz/RYYTXZQx0=,tag:kyw7zTPW4RsiM87Fnarbrg==,type:str]
+sops:
+    age:
+        - recipient: age18z3fy59zgysfr8jj3wlpsha2hjqjwm6glaes29wefxa3fadd6a4qnyh873
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSB4bVlweVI1M1JXdlpONjVL
+            NnoxLzJvOUxYU204N0JZM2N1UzB1NnVaaFdRCjdjcVVSRGtONkcwL1NZU0dobkJv
+            NElXSGh4Ty85WG9naTJvU1BRdGo3Q00KLS0tIGc0RnBZekFtRWhoaWx4elplVE9T
+            cGo0anFNRkljR2J3NFQwQklzWjNNamsK7vNnI91YCTbkjIUQ00MyHmGs5sKFfAMF
+            yb4V2RAxbW2mnTIhyTB/cWJv2RQraHjg3V/T1J5Yc8zjl8XAthFoGw==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2026-01-01T03:07:40Z"
+    mac: ENC[AES256_GCM,data:7EYQRuUwPfaG+ptrNOi3EpxR5Q30atQcaeWwlPH3jr76aSGamnYfA8FHlLQ8N5RPrGbdR5c7bM3gIe9lBk2kQAHedgUoQ/gUBj6Ccv0Wz7vOy41KV2XAVyGf2LYB/WmULzGUAmwtThqIV8yk34VhyPUJbpMEUOm52uewmTcPwCs=,iv:uKNZW2eA3aAeUNd0M9rpypWgF/56G1I04joCR4ITLhc=,tag:VL/uXKWk5EPBLOuH1ocmiA==,type:str]
+    encrypted_regex: ^(data|stringData)$
+    version: 3.11.0

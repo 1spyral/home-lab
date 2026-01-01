@@ -8,3 +8,10 @@ spec:
 
   storage:
     size: 50Gi
+
+  managed:
+    roles:
+      - name: al-dente
+        login: true
+        passwordSecret:
+          name: pg-shared-al-dente-auth
