@@ -11,7 +11,8 @@ spec:
 
   managed:
     roles:
-      - name: al-dente
+      - name: al_dente
+        ensure: present
         login: true
         passwordSecret:
           name: pg-shared-al-dente-auth

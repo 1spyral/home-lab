@@ -4,8 +4,7 @@ kind: Database
 metadata:
   name: pg-shared-al-dente
 spec:
-  name: al-dente
-  owner: al-dente
+  name: al_dente
+  owner: al_dente
   cluster:
     name: pg-shared
-  ensure: absent
