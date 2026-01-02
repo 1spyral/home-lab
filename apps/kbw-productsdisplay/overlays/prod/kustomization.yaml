@@ -11,4 +11,4 @@ patchesStrategicMerge:
 images:
   - name: ghcr.io/1spyral/kbw-productsdisplay
     newTag: latest
-    digest: sha256:4bf274ff2b4fb98f7f1b29932f92e292646acd3660f4148799c90cc2550c3d88 # {"$imagepolicy": "flux-system:kbw-productsdisplay:digest"}
+    digest: sha256:c911fd3521a5e955ce0f4a8856d951c0a34e059c7ebb36d6ec19698af44d0fb4 # {"$imagepolicy": "flux-system:kbw-productsdisplay:digest"}
