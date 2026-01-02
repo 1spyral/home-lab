@@ -9,33 +9,33 @@ show_help() {
 Usage: $(basename "$0") [options]
 
 Arguments (required unless set via environment variables):
-  --server, -s, -h    Server IP or DNS (or set \$KUBE_SERVER_IP)
-  --user, -u          SSH username (or set \$KUBE_USER)
+  --target, -t        SSH destination (or set \$KUBE_TARGET)
 
 Options:
-  --port, -p          SSH port (default: 22)
+	--port, -p          SSH port (optional; or set \$KUBE_SSH_PORT)
   --identity, -i      Path to SSH identity file (optional)
   --local-port, -l    Local port to bind (default: 6443)
   --remote-port, -r   Remote API port on the server (default: 6443)
-  --help              Show this help message
+  --help, -h          Show this help message
 
 Examples:
   # Using environment variables
-  export KUBE_SERVER_IP=203.0.113.10
-  export KUBE_USER=ubuntu
+  export KUBE_TARGET=gloo
+	# Optional: override port (otherwise uses SSH config / default)
+	export KUBE_SSH_PORT=2222
   $(basename "$0")
 
   # Using command-line arguments
-  $(basename "$0") --server 203.0.113.10 --user ubuntu -i ~/.ssh/id_rsa
+  $(basename "$0") --target gloo
+  $(basename "$0") --target ubuntu@203.0.113.10 -i ~/.ssh/id_rsa
 
   # Then point kubectl to https://127.0.0.1:6443
 EOF
 }
 
 # Defaults (can be overridden by environment variables or command-line args)
-SERVER="${KUBE_SERVER_IP:-}"
-USER="${KUBE_USER:-}"
-PORT=22
+TARGET="${KUBE_TARGET:-}"
+PORT="${KUBE_SSH_PORT:-}"
 LOCAL_PORT=6443
 REMOTE_PORT=6443
 IDENTITY=""
@@ -43,10 +43,8 @@ IDENTITY=""
 # Parse args (simple, supports long and short forms)
 while [ "$#" -gt 0 ]; do
 	case "$1" in
-		--server|-s|-h)
-			SERVER="$2"; shift 2;;
-		--user|-u)
-			USER="$2"; shift 2;;
+		--target|-t)
+			TARGET="$2"; shift 2;;
 		--port|-p)
 			PORT="$2"; shift 2;;
 		--identity|-i)
@@ -55,7 +53,7 @@ while [ "$#" -gt 0 ]; do
 			LOCAL_PORT="$2"; shift 2;;
 		--remote-port|--remote|-r)
 			REMOTE_PORT="$2"; shift 2;;
-		--help)
+		--help|-h)
 			show_help; exit 0;;
 		*)
 			echo "Unknown argument: $1" >&2
@@ -64,8 +62,8 @@ while [ "$#" -gt 0 ]; do
 done
 
 # Validate required args
-if [ -z "${SERVER:-}" ] || [ -z "${USER:-}" ]; then
-	echo "Error: --server and --user are required." >&2
+if [ -z "${TARGET:-}" ]; then
+	echo "Error: --target is required (or set \$KUBE_TARGET)." >&2
 	show_help
 	exit 2
 fi
@@ -81,21 +79,24 @@ ssh_args=(
 	-vv
 	-N
 	-L "${LOCAL_PORT}:127.0.0.1:${REMOTE_PORT}"
-	-p "${PORT}"
 	-o ExitOnForwardFailure=yes
 	-o ServerAliveInterval=60
 	-o ServerAliveCountMax=3
 )
 
+if [ -n "${PORT}" ]; then
+	ssh_args+=(-p "${PORT}")
+fi
+
 if [ -n "${IDENTITY}" ]; then
 	ssh_args+=(-i "${IDENTITY}")
 fi
 
-target="${USER}@${SERVER}"
+target="${TARGET}"
 
 cat <<MSG
 Starting SSH tunnel to ${target} ...
-Local  https://127.0.0.1:${LOCAL_PORT}  ->  ${SERVER}:${REMOTE_PORT} over SSH port ${PORT}
+Forwarding https://127.0.0.1:${LOCAL_PORT} via SSH (${target})
 Press Ctrl+C to stop.
 MSG
 
