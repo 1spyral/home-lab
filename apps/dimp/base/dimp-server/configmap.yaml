@@ -1,0 +1,11 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dimp-server-config
+data:
+  NODE_ENV: "production"
+  LOG_LEVEL: "info"
+  DB_MAX_CONNECTIONS: "10"
+  DB_IDLE_TIMEOUT: "30"
+  DB_CONNECT_TIMEOUT: "30"
