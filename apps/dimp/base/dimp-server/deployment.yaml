@@ -16,7 +16,7 @@ spec:
         app: dimp-server
     spec:
       containers:
-        - name: next
+        - name: dimp-server
           image: ghcr.io/1spyral/dimp-server
           imagePullPolicy: IfNotPresent
           resources:

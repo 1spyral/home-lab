@@ -16,7 +16,7 @@ spec:
         app: dimp-bot
     spec:
       containers:
-        - name: next
+        - name: dimp-bot
           image: ghcr.io/1spyral/dimp-bot
           imagePullPolicy: IfNotPresent
           resources:
