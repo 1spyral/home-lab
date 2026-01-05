@@ -28,6 +28,8 @@ spec:
             limits:
               cpu: "500m"
               memory: "512Mi"
+          ports:
+            - containerPort: 3000
           env:
             - name: NODE_ENV
               value: "production"
