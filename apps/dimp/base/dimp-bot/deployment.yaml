@@ -15,8 +15,6 @@ spec:
       labels:
         app: dimp-bot
     spec:
-      imagePullSecrets:
-        - name: ghcr-pull-secret
       containers:
         - name: next
           image: ghcr.io/1spyral/dimp-bot
