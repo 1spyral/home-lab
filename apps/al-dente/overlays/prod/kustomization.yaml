@@ -8,10 +8,10 @@ resources:
   - ../../base
   - namespace.yaml
 
-patchesStrategicMerge:
-  - backend-configmap.yaml
-  - frontend-configmap.yaml
-  - secrets.enc.yaml
+patches:
+  - path: backend-configmap.yaml
+  - path: frontend-configmap.yaml
+  - path: secrets.enc.yaml
 
 images:
   - name: ghcr.io/al-dente-ai/al-dente-backend
