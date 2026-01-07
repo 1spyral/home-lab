@@ -31,6 +31,11 @@ spec:
           env:
             - name: NODE_ENV
               value: "production"
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: pg-dimp-app
+                  key: fqdn-uri
           envFrom:
             - configMapRef:
                 name: dimp-server-config
