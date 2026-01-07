@@ -1,0 +1,50 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dimp-auth
+  labels:
+    app: dimp-auth
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dimp-auth
+  template:
+    metadata:
+      labels:
+        app: dimp-auth
+    spec:
+      containers:
+        - name: dimp-auth
+          image: ghcr.io/1spyral/dimp-auth
+          imagePullPolicy: IfNotPresent
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
+          ports:
+            - containerPort: 3000
+          env:
+            - name: NODE_ENV
+              value: "production"
+          envFrom:
+            - configMapRef:
+                name: dimp-auth-config
+            - secretRef:
+                name: dimp-auth-secrets
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 3000
+            initialDelaySeconds: 3
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 3000
+            initialDelaySeconds: 10
+            periodSeconds: 20
