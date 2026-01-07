@@ -4,4 +4,4 @@ kind: Kustomization
 
 resources:
   - postgres-cluster.yaml
-  - postgres-pooler.yaml
+  # - postgres-pooler.yaml
