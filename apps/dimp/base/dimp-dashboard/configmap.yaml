@@ -1,0 +1,7 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dimp-dashboard-config
+data:
+  NODE_ENV: "production"
