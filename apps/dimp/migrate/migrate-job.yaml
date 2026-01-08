@@ -11,7 +11,7 @@ spec:
         - name: migrate
           image: ghcr.io/1spyral/dimp-server-migrate
           env:
-            - name: DB_URL
+            - name: DATABASE_URL
               valueFrom:
                 secretKeyRef:
                   name: pg-dimp-app
