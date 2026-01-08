@@ -1,0 +1,9 @@
+---
+apiVersion: image.toolkit.fluxcd.io/v1
+kind: ImageRepository
+metadata:
+  name: dimp-auth
+  namespace: flux-system
+spec:
+  image: ghcr.io/1spyral/dimp-auth
+  interval: 1m
