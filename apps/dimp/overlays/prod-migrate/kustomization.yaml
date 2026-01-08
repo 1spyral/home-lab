@@ -8,4 +8,4 @@ resources:
 
 images:
   - name: ghcr.io/1spyral/dimp-server-migrate
-    newTag: v2026.01.06.01
+    newTag: v2026.01.06.01 # {"$imagepolicy": "flux-system:dimp-server-migrate:tag"}
