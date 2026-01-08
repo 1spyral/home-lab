@@ -1,0 +1,60 @@
+---
+apiVersion: image.toolkit.fluxcd.io/v1
+kind: ImageUpdateAutomation
+metadata:
+  name: dimp
+  namespace: flux-system
+spec:
+  interval: 1m
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  git:
+    checkout:
+      ref:
+        branch: main
+    commit:
+      author:
+        name: fluxcdbot
+        email: fluxcdbot@users.noreply.github.com
+      messageTemplate: |
+        chore(images): update dimp images
+        Changes:
+        {{- range .Changed.Changes }}
+          - {{ .OldValue }} -> {{ .NewValue }}
+        {{- end }}
+    push:
+      branch: main
+  update:
+    path: ./apps/dimp/overlays/prod
+    strategy: Setters
+---
+apiVersion: image.toolkit.fluxcd.io/v1
+kind: ImageUpdateAutomation
+metadata:
+  name: dimp-server-migrate
+  namespace: flux-system
+spec:
+  interval: 1m
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  git:
+    checkout:
+      ref:
+        branch: main
+    commit:
+      author:
+        name: fluxcdbot
+        email: fluxcdbot@users.noreply.github.com
+      messageTemplate: |
+        chore(images): update dimp-server-migrate image
+        Changes:
+        {{- range .Changed.Changes }}
+          - {{ .OldValue }} -> {{ .NewValue }}
+        {{- end }}
+    push:
+      branch: main
+  update:
+    path: ./apps/dimp/overlays/prod-migrate
+    strategy: Setters
