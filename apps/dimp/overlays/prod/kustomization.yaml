@@ -11,8 +11,8 @@ images:
   - name: ghcr.io/1spyral/dimp-auth
     newTag: v2026.01.08.00 # {"$imagepolicy": "flux-system:dimp-auth:tag"}
   - name: ghcr.io/1spyral/dimp-bot
-    newTag: v2026.01.07.00 # {"$imagepolicy": "flux-system:dimp-bot:tag"}
+    newTag: v2026.01.08.00 # {"$imagepolicy": "flux-system:dimp-bot:tag"}
   - name: ghcr.io/1spyral/dimp-dashboard
     newTag: v2026.01.07.00 # {"$imagepolicy": "flux-system:dimp-dashboard:tag"}
   - name: ghcr.io/1spyral/dimp-server
-    newTag: v2026.01.07.00 # {"$imagepolicy": "flux-system:dimp-server:tag"}
+    newTag: v2026.01.08.00 # {"$imagepolicy": "flux-system:dimp-server:tag"}
