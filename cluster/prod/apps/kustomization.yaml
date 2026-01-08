@@ -4,5 +4,6 @@ kind: Kustomization
 
 resources:
   - al-dente.yaml
+  - dimp
   - kbw-productsdisplay.yaml
   - pg-shared.yaml
