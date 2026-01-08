@@ -1,0 +1,16 @@
+---
+apiVersion: image.toolkit.fluxcd.io/v1
+kind: ImagePolicy
+metadata:
+  name: dimp-server
+  namespace: flux-system
+spec:
+  interval: 1m
+  imageRepositoryRef:
+    name: dimp-server
+  filterTags:
+    pattern: "^v[0-9]{4}\\.[0-9]{2}\\.[0-9]{2}\\.[0-9]{2}$"
+  policy:
+    alphabetical:
+      order: asc
+  digestReflectionPolicy: Always
