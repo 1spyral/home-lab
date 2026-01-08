@@ -3,10 +3,10 @@ kind: Job
 metadata:
   name: db-migrate
 spec:
-  backoffLimit: 3 # retry up to 3 times on failure
+  backoffLimit: 0
   template:
     spec:
-      restartPolicy: OnFailure
+      restartPolicy: Never
       containers:
         - name: migrate
           image: ghcr.io/1spyral/dimp-server-migrate

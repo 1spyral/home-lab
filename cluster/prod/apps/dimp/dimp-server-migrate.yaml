@@ -1,0 +1,17 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: dimp-server-migrate
+  namespace: flux-system
+spec:
+  interval: 10m
+  path: ./apps/dimp/overlays/prod-migrate
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  wait: true
+  timeout: 5m
+
+  dependsOn:
+    - name: dimp-pg
