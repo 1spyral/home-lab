@@ -1,0 +1,32 @@
+---
+# Backend database
+apiVersion: postgresql.cnpg.io/v1
+kind: Database
+metadata:
+  name: pg-dev-dimp
+spec:
+  name: dimp
+  owner: dimp
+  cluster:
+    name: pg-dev
+  extensions:
+    - name: "uuid-ossp"
+      ensure: present
+    - name: pg_trgm
+      ensure: present
+---
+# Auth database
+apiVersion: postgresql.cnpg.io/v1
+kind: Database
+metadata:
+  name: pg-dev-dimp-auth
+spec:
+  name: dimp-auth
+  owner: dimp
+  cluster:
+    name: pg-dev
+  extensions:
+    - name: "uuid-ossp"
+      ensure: present
+    - name: pg_trgm
+      ensure: present

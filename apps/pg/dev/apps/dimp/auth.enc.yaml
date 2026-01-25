@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Secret
+metadata:
+    name: pg-dev-dimp-auth
+    labels:
+        cnpg.io/reload: "true"
+type: kubernetes.io/basic-auth
+stringData:
+    username: ENC[AES256_GCM,data:nQb+DQ==,iv:GhXnwWwOc5M0/7LJkziGbYz3G4OeN2vLs48YWdc6T6w=,tag:MPaXngIuu9Tk2PgwfIBCng==,type:str]
+    password: ENC[AES256_GCM,data:v1f6n8XiDHVEHMlisv6wgik=,iv:ISB5D88s8CUO0EfXZPClHUOPfvJVqCwoDMOIBpqUL1g=,tag:xrLH8rRTDL6i4c/DOs2OJA==,type:str]
+sops:
+    age:
+        - recipient: age18z3fy59zgysfr8jj3wlpsha2hjqjwm6glaes29wefxa3fadd6a4qnyh873
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBWZ2k4eGFxdXc5M3RFSFRV
+            dDB5ZGtDQXJwMWY1Yy9jbEplT3ZhbjdaUG1JClVwdFFiQWJNc3pZQ3Q3aHY0RENT
+            WTY5czdYdTBrQ3BrN2pDb3hCWUR4eTAKLS0tIEVvZzVwK2tQT3IxbDNtM3dINXN2
+            djRWaVp5bG1iVVdCNjJKbEc2SnBlSkEKDfXvPOZfK29U0M8U//pvW/rDR/oHoj8E
+            /kvgCMJ6kcCSrpnuenUOqQx4H1dyHIPrwC7b97C3ZtXXt08BajJgoA==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2026-01-25T22:24:58Z"
+    mac: ENC[AES256_GCM,data:SJEfz2zwwWkN7jg4nhi0rftYfyj2mDgsyoalLlObA9k6Rq7kwVRC7iMEs37GGhQNzyeeu3804t8jStQzAuZp4M4gB43+xjtiNEhl5TZzfSXFfyO1m0XV0IJC0jpZncXDhZUdJt2f3938B+JsyeEvdwC/uaGVORGGkCxkuNrYZ3E=,iv:T8ihaVZYuFjhV2ALWSweCFdvY9X/E3Q16rEm8vqSr60=,tag:AHrxDfud3cNGQ2BacyFwsw==,type:str]
+    encrypted_regex: ^(data|stringData)$
+    version: 3.11.0
