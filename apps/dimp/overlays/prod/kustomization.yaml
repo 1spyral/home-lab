@@ -7,6 +7,7 @@ resources:
 patches:
   - path: dimp-bot-secrets.enc.yaml
   - path: dimp-server-secrets.enc.yaml
+  - path: dimp-server-env.patch.yaml
 images:
   - name: ghcr.io/1spyral/dimp-auth
     newTag: v2026.01.25.02 # {"$imagepolicy": "flux-system:dimp-auth:tag"}

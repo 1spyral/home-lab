@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dimp-server
+spec:
+  selector:
+    matchLabels:
+      app: dimp-server
+  template:
+    spec:
+      containers:
+        - name: dimp-server
+          env:
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: pg-dimp-app
+                  key: fqdn-uri
