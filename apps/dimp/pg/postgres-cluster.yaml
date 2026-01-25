@@ -8,3 +8,11 @@ spec:
 
   storage:
     size: 50Gi
+
+  managed:
+    roles:
+      - name: auth
+        ensure: present
+        login: true
+        passwordSecret:
+          name: pg-dimp-auth

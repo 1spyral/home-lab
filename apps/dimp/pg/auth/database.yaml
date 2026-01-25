@@ -1,0 +1,15 @@
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Database
+metadata:
+  name: pg-dimp-auth
+spec:
+  name: dimp-auth
+  owner: auth
+  cluster:
+    name: pg-dimp
+  extensions:
+    - name: "uuid-ossp"
+      ensure: present
+    - name: pg_trgm
+      ensure: present
