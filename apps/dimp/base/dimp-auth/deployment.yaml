@@ -36,6 +36,11 @@ spec:
                 name: dimp-auth-config
             - secretRef:
                 name: dimp-auth-secrets
+          volumeMounts:
+            - name: dimp-auth-jwks
+              mountPath: /keys/jwks.json
+              subPath: jwks.json
+              readOnly: true
           readinessProbe:
             httpGet:
               path: /
@@ -48,3 +53,10 @@ spec:
               port: 3000
             initialDelaySeconds: 10
             periodSeconds: 20
+      volumes:
+        - name: dimp-auth-jwks
+          secret:
+            secretName: dimp-auth-jwks
+            items:
+              - key: jwks.json
+                path: jwks.json
