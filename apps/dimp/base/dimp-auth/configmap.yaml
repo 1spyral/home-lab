@@ -11,6 +11,7 @@ data:
   JWKS_FILE: "/keys/jwks.json"
 
   DISCORD_OAUTH_REDIRECT_URI: "http://localhost:3000/oauth/discord/callback"
+  DISCORD_OAUTH_REDIRECT_SUCCESS_URI: "http://localhost:3000" # TODO: change to frontend URL
 
   DB_MAX_CONNECTIONS: "10"
   DB_IDLE_TIMEOUT: "30"
