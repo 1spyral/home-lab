@@ -5,6 +5,6 @@ resources:
   - ../../migrate
 images:
   - name: ghcr.io/1spyral/dimp-auth-migrate
-    newTag: none # {"$imagepolicy": "flux-system:dimp-auth-migrate:tag"}
+    newTag: v2026.01.25.04 # {"$imagepolicy": "flux-system:dimp-auth-migrate:tag"}
   - name: ghcr.io/1spyral/dimp-server-migrate
     newTag: v2026.01.25.04 # {"$imagepolicy": "flux-system:dimp-server-migrate:tag"}
