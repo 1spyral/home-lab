@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: db-migrate
+  name: db-server-migrate
 spec:
   backoffLimit: 0
   ttlSecondsAfterFinished: 300
