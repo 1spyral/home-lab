@@ -7,6 +7,7 @@ resources:
 patches:
   - path: dimp-bot-secrets.enc.yaml
   - path: dimp-server-secrets.enc.yaml
+  - path: dimp-auth-env.patch.yaml
   - path: dimp-server-env.patch.yaml
 images:
   - name: ghcr.io/1spyral/dimp-auth
