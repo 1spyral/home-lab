@@ -4,6 +4,7 @@ kind: Kustomization
 
 resources:
   - dimp-auth
+  - dimp-auth-migrate
   - dimp-bot
   - dimp-dashboard
   - dimp-server

@@ -32,7 +32,7 @@ spec:
 apiVersion: image.toolkit.fluxcd.io/v1
 kind: ImageUpdateAutomation
 metadata:
-  name: dimp-server-migrate
+  name: dimp-migrate
   namespace: flux-system
 spec:
   interval: 1m
@@ -48,7 +48,7 @@ spec:
         name: fluxcdbot
         email: fluxcdbot@users.noreply.github.com
       messageTemplate: |
-        chore(images): update dimp-server-migrate image
+        chore(images): update dimp-migrate images
         Changes:
         {{- range .Changed.Changes }}
           - {{ .OldValue }} -> {{ .NewValue }}
