@@ -5,6 +5,7 @@ metadata:
   name: pg-dimp-auth
 spec:
   name: dimp-auth
+  ensure: absent
   owner: auth
   cluster:
     name: pg-dimp
