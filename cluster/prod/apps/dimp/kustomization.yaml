@@ -5,4 +5,4 @@ kind: Kustomization
 resources:
   - dimp.yaml
   - dimp-pg.yaml
-  - dimp-server-migrate.yaml
+  - dimp-migrate.yaml

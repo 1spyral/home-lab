@@ -18,4 +18,4 @@ spec:
       name: sops-age
 
   dependsOn:
-    - name: dimp-server-migrate
+    - name: dimp-migrate
