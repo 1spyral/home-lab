@@ -9,3 +9,9 @@ data:
   HOST: "0.0.0.0"
   LOG_LEVEL: "info"
   JWKS_FILE: "/keys/jwks.json"
+
+  DISCORD_OAUTH_REDIRECT_URI: "http://localhost:3000/oauth/discord/callback"
+
+  DB_MAX_CONNECTIONS: "10"
+  DB_IDLE_TIMEOUT: "30"
+  DB_CONNECT_TIMEOUT: "30"

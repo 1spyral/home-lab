@@ -5,6 +5,7 @@ resources:
   - ../../base
   - namespace.yaml
 patches:
+  - path: dimp-auth-secrets.enc.yaml
   - path: dimp-bot-secrets.enc.yaml
   - path: dimp-server-secrets.enc.yaml
   - path: dimp-auth-env.patch.yaml
