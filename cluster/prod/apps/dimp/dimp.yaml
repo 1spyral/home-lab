@@ -16,13 +16,6 @@ spec:
     provider: sops
     secretRef:
       name: sops-age
-  ignore: |
-    kind: Secret
-    name: dimp-auth-jwks
-    namespace: dimp
-    jsonPointers:
-      - /data
-      - /stringData
 
   dependsOn:
     - name: dimp-server-migrate
