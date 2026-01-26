@@ -6,6 +6,7 @@ metadata:
 spec:
   interval: 10m
   path: ./apps/dimp/overlays/prod-migrate
+  force: true
   prune: true
   sourceRef:
     kind: GitRepository
