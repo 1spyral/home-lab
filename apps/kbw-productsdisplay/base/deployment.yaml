@@ -17,17 +17,22 @@ spec:
     spec:
       imagePullSecrets:
         - name: ghcr-pull-secret
+      volumes:
+        - name: dshm
+          emptyDir:
+            medium: Memory
+            sizeLimit: "512Mi"
       containers:
         - name: next
           image: ghcr.io/1spyral/kbw-productsdisplay
           imagePullPolicy: IfNotPresent
           resources:
             requests:
-              cpu: "100m"
-              memory: "128Mi"
-            limits:
-              cpu: "500m"
+              cpu: "250m"
               memory: "512Mi"
+            limits:
+              cpu: "1000m"
+              memory: "1Gi"
           ports:
             - containerPort: 3000
           env:
@@ -38,6 +43,9 @@ spec:
                 name: kbw-productsdisplay-config
             - secretRef:
                 name: kbw-productsdisplay-secrets
+          volumeMounts:
+            - name: dshm
+              mountPath: /dev/shm
           readinessProbe:
             httpGet:
               path: /
