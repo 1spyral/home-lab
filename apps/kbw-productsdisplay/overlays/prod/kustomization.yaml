@@ -11,4 +11,4 @@ patches:
 images:
   - name: ghcr.io/1spyral/kbw-productsdisplay
     newTag: latest
-    digest: sha256:3d6c694fdce2a6fb0dd5a924229c55cf3832ef49142b92dcf75ce09b78ff18ab # {"$imagepolicy": "flux-system:kbw-productsdisplay:digest"}
+    digest: sha256:90d61f5daa51a8ab26aaf4b424b222812e4d4d1bddc261a97623e04af15b9f62 # {"$imagepolicy": "flux-system:kbw-productsdisplay:digest"}
