@@ -48,13 +48,13 @@ spec:
               mountPath: /dev/shm
           readinessProbe:
             httpGet:
-              path: /
+              path: /readyz
               port: 3000
             initialDelaySeconds: 3
             periodSeconds: 30
           livenessProbe:
             httpGet:
-              path: /
+              path: /livez
               port: 3000
             initialDelaySeconds: 10
             periodSeconds: 30
