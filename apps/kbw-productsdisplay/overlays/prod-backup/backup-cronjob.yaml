@@ -3,7 +3,7 @@ kind: CronJob
 metadata:
   name: kbw-productsdisplay-db-backup
 spec:
-  schedule: "30 2 * * *"
+  schedule: "30 4 * * *"
   concurrencyPolicy: Forbid
   successfulJobsHistoryLimit: 3
   failedJobsHistoryLimit: 3
