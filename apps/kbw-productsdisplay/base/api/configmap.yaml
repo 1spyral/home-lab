@@ -8,3 +8,4 @@ data:
   HOST: "0.0.0.0"
   PORT: "3001"
   LOG_LEVEL: "info"
+  CORS_ALLOWED_ORIGINS: ""
