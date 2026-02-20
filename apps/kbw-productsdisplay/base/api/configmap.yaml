@@ -1,0 +1,7 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kbw-productsdisplay-config
+data:
+  NODE_ENV: "production"
