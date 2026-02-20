@@ -6,5 +6,6 @@ resources:
   - al-dente.yaml
   - dimp
   - kbw-productsdisplay.yaml
+  - kbw-productsdisplay-backup.yaml
   - pg-dev.yaml
   - pg-shared.yaml

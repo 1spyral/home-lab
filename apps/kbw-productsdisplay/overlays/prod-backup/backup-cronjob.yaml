@@ -1,0 +1,46 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: kbw-productsdisplay-db-backup
+spec:
+  schedule: "30 2 * * *"
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 3
+  jobTemplate:
+    spec:
+      backoffLimit: 1
+      ttlSecondsAfterFinished: 86400
+      template:
+        spec:
+          restartPolicy: Never
+          containers:
+            - name: pg-backup
+              image: postgres:17-alpine
+              imagePullPolicy: IfNotPresent
+              command:
+                - /bin/sh
+                - -ec
+                - |
+                  timestamp="$(date -u +%Y%m%dT%H%M%SZ)"
+                  backup_file="/backups/kbw-productsdisplay-${timestamp}.dump"
+
+                  pg_dump \
+                    --dbname="${DATABASE_URL}" \
+                    --format=custom \
+                    --file="${backup_file}"
+
+                  find /backups -type f -name 'kbw-productsdisplay-*.dump' -mtime +14 -delete
+              env:
+                - name: DATABASE_URL
+                  valueFrom:
+                    secretKeyRef:
+                      name: kbw-productsdisplay-secrets
+                      key: DATABASE_URL
+              volumeMounts:
+                - name: backups
+                  mountPath: /backups
+          volumes:
+            - name: backups
+              persistentVolumeClaim:
+                claimName: kbw-productsdisplay-db-backups
