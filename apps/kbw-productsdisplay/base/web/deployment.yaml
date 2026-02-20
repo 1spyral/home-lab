@@ -40,9 +40,9 @@ spec:
               value: "production"
           envFrom:
             - configMapRef:
-                name: kbw-productsdisplay-config
+                name: kbw-productsdisplay-web-config
             - secretRef:
-                name: kbw-productsdisplay-secrets
+                name: kbw-productsdisplay-web-secrets
           volumeMounts:
             - name: dshm
               mountPath: /dev/shm

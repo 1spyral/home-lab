@@ -6,8 +6,8 @@ resources:
   - namespace.yaml
 patches:
   - path: ghcr-pull-secret.enc.yaml
-  - path: configmap.yaml
-  - path: secrets.enc.yaml
+  - path: web-configmap.yaml
+  - path: web-secrets.enc.yaml
 images:
   - name: ghcr.io/1spyral/kbw-productsdisplay
     newTag: latest

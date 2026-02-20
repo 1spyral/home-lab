@@ -39,9 +39,9 @@ spec:
               value: "3001"
           envFrom:
             - configMapRef:
-                name: kbw-productsdisplay-config
+                name: kbw-productsdisplay-api-config
             - secretRef:
-                name: kbw-productsdisplay-secrets
+                name: kbw-productsdisplay-api-secrets
           readinessProbe:
             httpGet:
               path: /readyz
