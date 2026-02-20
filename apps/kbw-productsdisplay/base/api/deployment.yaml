@@ -30,13 +30,6 @@ spec:
               memory: "1Gi"
           ports:
             - containerPort: 3001
-          env:
-            - name: NODE_ENV
-              value: "production"
-            - name: HOST
-              value: "0.0.0.0"
-            - name: PORT
-              value: "3001"
           envFrom:
             - configMapRef:
                 name: kbw-productsdisplay-api-config
