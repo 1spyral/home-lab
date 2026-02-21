@@ -6,6 +6,7 @@ resources:
   - namespace.yaml
 patches:
   - path: ghcr-pull-secret.enc.yaml
+  - path: api-configmap.yaml
   - path: api-secrets.enc.yaml
   - path: web-configmap.yaml
   - path: web-secrets.enc.yaml
