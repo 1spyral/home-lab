@@ -1,27 +1,27 @@
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: kbw-productsdisplay
-  annotations:
-    cert-manager.io/cluster-issuer: letsencrypt-dns01-prod
-spec:
-  ingressClassName: traefik
-  tls:
-    - hosts:
-        - keautybeautywarehouse.com
-      secretName: kbw-productsdisplay-tls
-  rules:
-    - host: keautybeautywarehouse.com
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: kbw-productsdisplay
-                port:
-                  number: 3000
+# ---
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: kbw-productsdisplay
+#   annotations:
+#     cert-manager.io/cluster-issuer: letsencrypt-dns01-prod
+# spec:
+#   ingressClassName: traefik
+#   tls:
+#     - hosts:
+#         - keautybeautywarehouse.com
+#       secretName: kbw-productsdisplay-tls
+#   rules:
+#     - host: keautybeautywarehouse.com
+#       http:
+#         paths:
+#           - path: /
+#             pathType: Prefix
+#             backend:
+#               service:
+#                 name: kbw-productsdisplay
+#                 port:
+#                   number: 3000
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
