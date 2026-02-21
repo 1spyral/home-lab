@@ -22,3 +22,27 @@ spec:
                 name: kbw-productsdisplay
                 port:
                   number: 3000
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: kbw-productsdisplay-api
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-dns01-prod
+spec:
+  ingressClassName: traefik
+  tls:
+    - hosts:
+        - api.keautybeautywarehouse.com
+      secretName: kbw-productsdisplay-api-tls
+  rules:
+    - host: api.keautybeautywarehouse.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: kbw-productsdisplay-api
+                port:
+                  number: 3001
