@@ -7,7 +7,7 @@ metadata:
 spec:
   interval: 30m
   releaseName: cert-manager
-  targetNamespace: kube-system
+  targetNamespace: cert-manager
   install:
     createNamespace: true
   chart:

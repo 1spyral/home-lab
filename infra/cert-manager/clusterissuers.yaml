@@ -3,6 +3,7 @@ apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
 metadata:
   name: letsencrypt-dns01-staging
+  namespace: cert-manager
 spec:
   acme:
     email: luke.zhan@uwaterloo.ca
@@ -20,6 +21,7 @@ apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
 metadata:
   name: letsencrypt-dns01-prod
+  namespace: cert-manager
 spec:
   acme:
     email: luke.zhan@uwaterloo.ca
