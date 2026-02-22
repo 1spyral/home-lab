@@ -35,7 +35,7 @@ spec:
                 - name: DATABASE_URL
                   valueFrom:
                     secretKeyRef:
-                      name: kbw-productsdisplay-secrets
+                      name: kbw-productsdisplay-api-secrets
                       key: DATABASE_URL
               volumeMounts:
                 - name: backups
