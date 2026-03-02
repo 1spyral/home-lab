@@ -16,4 +16,4 @@ images:
   #   digest: sha256:da09034eae8b1a76b5c08b31f1645f443dc9359b1c857246b06fad455822ab16 # {"$imagepolicy": "flux-system:kbw-productsdisplay:digest"}
   - name: ghcr.io/1spyral/productsdisplay-api
     newTag: latest
-    digest: sha256:6886405879a4b4e3799a521bd90dfdbfa4320e30e09b346ecf67ae7d402ed040 # {"$imagepolicy": "flux-system:kbw-productsdisplay-api:digest"}
+    digest: sha256:4819c0a703471d6d7247fd45589b5ad9010883e7b0444becc7d372432ca3ff51 # {"$imagepolicy": "flux-system:kbw-productsdisplay-api:digest"}
