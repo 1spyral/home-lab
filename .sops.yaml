@@ -1,5 +1,5 @@
 creation_rules:
-  - path_regex: (cluster/.*/.*|apps/.*/.*)\.ya?ml$
+  - path_regex: (cluster/.*/.*|apps/.*/.*/.*|jobs/.*/.*)\.ya?ml$
     encrypted_regex: "^(data|stringData)$"
     kms: []
     gcp_kms: []

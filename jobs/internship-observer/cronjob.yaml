@@ -1,0 +1,37 @@
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: internship-observer
+spec:
+  schedule: "0 2 * * 1-5"
+  jobTemplate:
+    spec:
+      backoffLimit: 0
+      template:
+        spec:
+          restartPolicy: Never
+          containers:
+            - name: internship-observer
+              image: ghcr.io/williamwu277/observer
+              envFrom:
+                - secretRef:
+                    name: internship-observer-secrets
+              volumeMounts:
+                - name: credentials
+                  mountPath: /app/credentials.json
+                  subPath: credentials.json
+                  readOnly: true
+              resources:
+                requests:
+                  cpu: 50m
+                  memory: 64Mi
+                limits:
+                  cpu: 200m
+                  memory: 128Mi
+          imagePullSecrets:
+            - name: ghcr-pull-secret
+          volumes:
+            - name: credentials
+              secret:
+                secretName: internship-observer-credentials
