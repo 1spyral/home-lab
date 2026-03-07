@@ -3,9 +3,9 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-  - imagerepo.yaml
-  - imagepolicy.yaml
-  - imageupdateautomation.yaml
+  - kbw-productsdisplay-api
+  - kbw-productsdisplay-web
+  - imageupdateautomations.yaml
 
 generators:
   - ksops-generator.yaml
