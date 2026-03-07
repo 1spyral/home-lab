@@ -6,4 +6,5 @@ namespace: flux-system
 
 resources:
   - dimp
+  - internship-observer
   - kbw-productsdisplay

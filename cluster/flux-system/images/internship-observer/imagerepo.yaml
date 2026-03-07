@@ -1,0 +1,11 @@
+---
+apiVersion: image.toolkit.fluxcd.io/v1
+kind: ImageRepository
+metadata:
+  name: internship-observer
+  namespace: flux-system
+spec:
+  image: ghcr.io/williamwu277/observer
+  interval: 1m
+  secretRef:
+    name: internship-observer-ghcr-pull-secret
