@@ -1,17 +1,13 @@
----
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-
 namespace: internship-observer
-
 resources:
   - namespace.yaml
   - secrets.enc.yaml
   - credentials-secret.enc.yaml
   - ghcr-pull-secret.enc.yaml
   - cronjob.yaml
-
 images:
   - name: ghcr.io/williamwu277/observer
     newTag: latest
-    digest: "" # {"$imagepolicy": "flux-system:internship-observer:digest"}
+    digest: "sha256:685010b35e099c5071fa927d1229075dc0fe2cd3f7a2074ea2aeffa75313ce80" # {"$imagepolicy": "flux-system:internship-observer:digest"}
