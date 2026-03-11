@@ -34,3 +34,15 @@ spec:
                 name: dimp-bot-config
             - secretRef:
                 name: dimp-bot-secrets
+          readinessProbe:
+            httpGet:
+              path: /readyz
+              port: 3000
+            initialDelaySeconds: 3
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /livez
+              port: 3000
+            initialDelaySeconds: 5
+            periodSeconds: 15
