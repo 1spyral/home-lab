@@ -18,4 +18,4 @@ images:
   - name: ghcr.io/1spyral/dimp-dashboard
     newTag: v2026.03.10.01 # {"$imagepolicy": "flux-system:dimp-dashboard:tag"}
   - name: ghcr.io/1spyral/dimp-server
-    newTag: v2026.03.10.01 # {"$imagepolicy": "flux-system:dimp-server:tag"}
+    newTag: v2026.03.10.02 # {"$imagepolicy": "flux-system:dimp-server:tag"}
