@@ -28,6 +28,12 @@ api:
 metrics:
   prometheus:
     enabled: true
+    service:
+      enabled: true
+    serviceMonitor:
+      enabled: true
+      additionalLabels:
+        release: kube-prometheus-stack
 
 additionalArguments:
   - --api.insecure=true
