@@ -3,6 +3,13 @@ fullnameOverride: kube-prometheus-stack
 grafana:
   enabled: true
 
+  serviceMonitor:
+    enabled: true
+    path: "/metrics"
+
+    labels:
+      release: kube-prometheus-stack
+
 prometheus:
   enabled: true
   prometheusSpec:
