@@ -1,0 +1,25 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: grafana
+  namespace: monitoring
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-dns01-prod
+spec:
+  ingressClassName: traefik
+  tls:
+    - hosts:
+        - grafana.gloop.me
+      secretName: grafana-tls
+  rules:
+    - host: grafana.gloop.me
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: grafana
+                port:
+                  number: 80
