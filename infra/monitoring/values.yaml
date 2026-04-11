@@ -3,6 +3,18 @@ fullnameOverride: kube-prometheus-stack
 grafana:
   enabled: true
 
+  persistence:
+    enabled: true
+    type: pvc
+
+    size: 10Gi
+
+    accessModes:
+      - ReadWriteOnce
+
+    finalizers:
+      - kubernetes.io/pvc-protection
+
   serviceMonitor:
     enabled: true
     path: "/metrics"
