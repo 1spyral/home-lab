@@ -7,5 +7,6 @@ resources:
   - dimp
   - kbw-productsdisplay.yaml
   - kbw-productsdisplay-backup.yaml
+  - openclaw.yaml
   - pg-dev.yaml
   - pg-shared.yaml
