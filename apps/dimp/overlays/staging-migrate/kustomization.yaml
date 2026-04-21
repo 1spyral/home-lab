@@ -9,4 +9,4 @@ images:
     digest: dummy # {"$imagepolicy": "flux-system:dimp-staging-auth-migrate:digest"}
   - name: ghcr.io/1spyral/dimp-server-migrate
     newTag: latest
-    digest: dummy # {"$imagepolicy": "flux-system:dimp-staging-server-migrate:digest"}
+    digest: sha256:7358f5b2407cfdcaffb0aa0b892329d84cf7b161e967d9fbbf287ae0cececc24 # {"$imagepolicy": "flux-system:dimp-staging-server-migrate:digest"}
