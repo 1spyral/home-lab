@@ -1,0 +1,25 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: dimp-staging
+resources:
+  - ../../base
+  - namespace.yaml
+patches:
+  - path: dimp-auth-secrets.enc.yaml
+  - path: dimp-bot-secrets.enc.yaml
+  - path: dimp-server-secrets.enc.yaml
+  - path: dimp-auth-env.patch.yaml
+  - path: dimp-server-env.patch.yaml
+images:
+  - name: ghcr.io/1spyral/dimp-auth
+    newTag: latest
+    digest: dummy # {"$imagepolicy": "flux-system:dimp-staging-auth:digest"}
+  - name: ghcr.io/1spyral/dimp-bot
+    newTag: latest
+    digest: dummy # {"$imagepolicy": "flux-system:dimp-staging-bot:digest"}
+  - name: ghcr.io/1spyral/dimp-dashboard
+    newTag: latest
+    digest: dummy # {"$imagepolicy": "flux-system:dimp-staging-dashboard:digest"}
+  - name: ghcr.io/1spyral/dimp-server
+    newTag: latest
+    digest: dummy # {"$imagepolicy": "flux-system:dimp-staging-server:digest"}
