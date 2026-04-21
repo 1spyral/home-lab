@@ -2,12 +2,12 @@
 apiVersion: image.toolkit.fluxcd.io/v1
 kind: ImagePolicy
 metadata:
-  name: dimp-staging-bot
+  name: dimp-staging-server
   namespace: flux-system
 spec:
   interval: 1m
   imageRepositoryRef:
-    name: dimp-staging-bot
+    name: dimp-server
   filterTags:
     pattern: "^latest$"
   policy:

@@ -2,12 +2,12 @@
 apiVersion: image.toolkit.fluxcd.io/v1
 kind: ImagePolicy
 metadata:
-  name: dimp-staging-server
+  name: dimp-staging-auth-migrate
   namespace: flux-system
 spec:
   interval: 1m
   imageRepositoryRef:
-    name: dimp-staging-server
+    name: dimp-auth-migrate
   filterTags:
     pattern: "^latest$"
   policy:
