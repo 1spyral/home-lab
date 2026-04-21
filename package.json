@@ -5,6 +5,7 @@
     "reconcile:source": "flux reconcile source git flux-system -n flux-system",
     "reconcile:flux": "flux reconcile kustomization flux-system -n flux-system --with-source",
     "deploy": "scripts/deploy.sh",
+    "teardown": "scripts/teardown.sh",
     "encrypt": "scripts/sops-encrypt.sh",
     "decrypt": "scripts/sops-decrypt.sh",
     "lint": "yamllint .",
