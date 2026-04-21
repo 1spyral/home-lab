@@ -13,13 +13,13 @@ patches:
 images:
   - name: ghcr.io/1spyral/dimp-auth
     newTag: latest
-    digest: dummy # {"$imagepolicy": "flux-system:dimp-staging-auth:digest"}
+    digest: sha256:a85a9afb6d16618cfed0e5186cc2c305c6b9514ecdf88fa1e20187c0265abb40 # {"$imagepolicy": "flux-system:dimp-staging-auth:digest"}
   - name: ghcr.io/1spyral/dimp-bot
     newTag: latest
-    digest: dummy # {"$imagepolicy": "flux-system:dimp-staging-bot:digest"}
+    digest: sha256:9c1c67b28a85854ad08e7678e51ae190dccf84fd53cd4d138ed222eb2b81e4b4 # {"$imagepolicy": "flux-system:dimp-staging-bot:digest"}
   - name: ghcr.io/1spyral/dimp-dashboard
     newTag: latest
-    digest: dummy # {"$imagepolicy": "flux-system:dimp-staging-dashboard:digest"}
+    digest: sha256:8a6f5bd7b03d99cd0044195385bee9c31f3dfaed79e1c8f54da0f630348911b0 # {"$imagepolicy": "flux-system:dimp-staging-dashboard:digest"}
   - name: ghcr.io/1spyral/dimp-server
     newTag: latest
     digest: sha256:a01e71015470af212980891c32a8fb5c8c03af73a0d01122b05b24989129306c # {"$imagepolicy": "flux-system:dimp-staging-server:digest"}
