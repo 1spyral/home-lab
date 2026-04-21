@@ -22,4 +22,4 @@ images:
     digest: dummy # {"$imagepolicy": "flux-system:dimp-staging-dashboard:digest"}
   - name: ghcr.io/1spyral/dimp-server
     newTag: latest
-    digest: dummy # {"$imagepolicy": "flux-system:dimp-staging-server:digest"}
+    digest: sha256:a01e71015470af212980891c32a8fb5c8c03af73a0d01122b05b24989129306c # {"$imagepolicy": "flux-system:dimp-staging-server:digest"}
