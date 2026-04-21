@@ -1,0 +1,16 @@
+---
+apiVersion: image.toolkit.fluxcd.io/v1
+kind: ImagePolicy
+metadata:
+  name: dimp-staging-bot
+  namespace: flux-system
+spec:
+  interval: 1m
+  imageRepositoryRef:
+    name: dimp-staging-bot
+  filterTags:
+    pattern: "^latest$"
+  policy:
+    alphabetical:
+      order: asc
+  digestReflectionPolicy: Always
