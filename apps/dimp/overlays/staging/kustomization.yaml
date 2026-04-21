@@ -3,7 +3,6 @@ kind: Kustomization
 namespace: dimp-staging
 resources:
   - ../../base
-  - namespace.yaml
 patches:
   - path: dimp-auth-secrets.enc.yaml
   - path: dimp-bot-secrets.enc.yaml
