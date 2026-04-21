@@ -1,33 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-    name: dimp-server
+  name: dimp-server
 spec:
-    selector:
-        matchLabels:
-            app: dimp-server
-    template:
-        spec:
-            containers:
-                - name: dimp-server
-                  env:
-                    - name: DATABASE_URL
-                      valueFrom:
-                        secretKeyRef:
-                            name: pg-dimp-app
-                            key: fqdn-uri
-sops:
-    age:
-        - recipient: age18z3fy59zgysfr8jj3wlpsha2hjqjwm6glaes29wefxa3fadd6a4qnyh873
-          enc: |
-            -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSA5dkNkM1lYQ3ZRZEthWnNx
-            cCsxc01uVnZscUdpMFdTbm9aNVRkd0NyMldFCkg2cjU2MU5vc3BnOVd4VnpzQWVh
-            NWhueGIweHVUeU9ObkJYbUVQbnZmUlEKLS0tIDNjMkhZN21ZRVU4Q0pKS2kvVTZ1
-            bzhqS0NKUDJOWms5NUlhTDBGMlFXRncKgWeK1q9oH3ksM0L9p0qzyTJfqGVkS3iu
-            OqWy+rLmuVIfSL7PQoaU0b/jFL1dIPnFb2zcXfBOCWxGCJktQ992Kg==
-            -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2026-04-21T22:50:02Z"
-    mac: ENC[AES256_GCM,data:ySgsrc+ch2ECA9XEfC4Ha4ePVmSsUTYajU4Aa8rYgGkKDMZEsjBwq8lUbyfHEjSsug8SIa/q8JoSTmGHw/+RdKdhhc1BivwUlVlC/rutcs9T6d2NDSR2qR8flpMIWsBFy0DR7LetG6+RDVWipiqGs28dTD85rAy3a41sBE59c98=,iv:gv8OAKTNiBhiyfVplx7Bi03a2JNXJRQyCkxy/A1DtR4=,tag:ATVv3KsmS5vNrYi95OC1lQ==,type:str]
-    encrypted_regex: ^(data|stringData)$
-    version: 3.12.1
+  selector:
+    matchLabels:
+      app: dimp-server
+  template:
+    spec:
+      containers:
+        - name: dimp-server
+          env:
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: pg-dimp-app
+                  key: fqdn-uri
