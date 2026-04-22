@@ -6,7 +6,7 @@ resources:
 images:
   - name: ghcr.io/1spyral/dimp-auth-migrate
     newTag: latest
-    digest: sha256:f3a72b67dcf200674c1bae7810a4231b99a965eec2d935279aafc49276125b1a # {"$imagepolicy": "flux-system:dimp-staging-auth-migrate:digest"}
+    digest: sha256:1f324012f2450f19567d0277e938391315b2410d8119bf0cdeda785687a3531e # {"$imagepolicy": "flux-system:dimp-staging-auth-migrate:digest"}
   - name: ghcr.io/1spyral/dimp-server-migrate
     newTag: latest
     digest: sha256:7358f5b2407cfdcaffb0aa0b892329d84cf7b161e967d9fbbf287ae0cececc24 # {"$imagepolicy": "flux-system:dimp-staging-server-migrate:digest"}
