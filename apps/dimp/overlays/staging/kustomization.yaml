@@ -12,13 +12,13 @@ patches:
 images:
   - name: ghcr.io/1spyral/dimp-auth
     newTag: latest
-    digest: sha256:38a5630f7652da3499abe4ffd1d7b855b5c7da8ae820f571f29ec814883edbc6 # {"$imagepolicy": "flux-system:dimp-staging-auth:digest"}
+    digest: sha256:640e1e7a78a0ddaf75b35fd0c68c6195b44ead743f54c047a8dba2947e57cebd # {"$imagepolicy": "flux-system:dimp-staging-auth:digest"}
   - name: ghcr.io/1spyral/dimp-bot
     newTag: latest
-    digest: sha256:4781f78fc66a672384c4697b87384dcb6123982f425c3daa8c512b67dd5cb657 # {"$imagepolicy": "flux-system:dimp-staging-bot:digest"}
+    digest: sha256:01fcd1e28051f8ec3ef71e261bdf99c2572f3d2691b16f2d0351eb60ebcaff14 # {"$imagepolicy": "flux-system:dimp-staging-bot:digest"}
   - name: ghcr.io/1spyral/dimp-dashboard
     newTag: latest
     digest: sha256:1c45b1a577328d76d7d7e384040594c3895404a0893d7120493bd438b385a74f # {"$imagepolicy": "flux-system:dimp-staging-dashboard:digest"}
   - name: ghcr.io/1spyral/dimp-server
     newTag: latest
-    digest: sha256:bf5a6269e1c8a8c99898f9e2396815eb54203e15bee4beab34bab7d5cbf78fd9 # {"$imagepolicy": "flux-system:dimp-staging-server:digest"}
+    digest: sha256:6d21ce8ddddbab99a5f5756568873288202e40b07299c4d48aadcdd5445ed2be # {"$imagepolicy": "flux-system:dimp-staging-server:digest"}
