@@ -21,4 +21,4 @@ images:
     digest: sha256:cd39ee26a20e99bd09fddf51793bf544a83642576f7701ddf0279bff85a168f3 # {"$imagepolicy": "flux-system:dimp-staging-dashboard:digest"}
   - name: ghcr.io/1spyral/dimp-server
     newTag: latest
-    digest: sha256:7fa417f8d0d778789f4bb53de2a3c1fc3c6c91a0cdd9e781a1079b1ffb00e239 # {"$imagepolicy": "flux-system:dimp-staging-server:digest"}
+    digest: sha256:03a3976ba4cf70127c54803c050cdb2ddab5dc73a6925dae6ae69dc89a281171 # {"$imagepolicy": "flux-system:dimp-staging-server:digest"}
