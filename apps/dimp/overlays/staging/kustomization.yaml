@@ -15,7 +15,7 @@ images:
     digest: sha256:8c7bd96201ed8b9be490eec4809f250ade1dad2e7785a1a1fa5a8e5369c63d20 # {"$imagepolicy": "flux-system:dimp-staging-auth:digest"}
   - name: ghcr.io/1spyral/dimp-bot
     newTag: latest
-    digest: sha256:a7ecb545b210dfd459abd5be13a1eacd93603a13dbaced3929435ce4bde33261 # {"$imagepolicy": "flux-system:dimp-staging-bot:digest"}
+    digest: sha256:03d1a75c8fe74c02a3cc7df7752bb584cbc26abd53855fc630767a8ee9a51ad5 # {"$imagepolicy": "flux-system:dimp-staging-bot:digest"}
   - name: ghcr.io/1spyral/dimp-dashboard
     newTag: latest
     digest: sha256:cd39ee26a20e99bd09fddf51793bf544a83642576f7701ddf0279bff85a168f3 # {"$imagepolicy": "flux-system:dimp-staging-dashboard:digest"}
