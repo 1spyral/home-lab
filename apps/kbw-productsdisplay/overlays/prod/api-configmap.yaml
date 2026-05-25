@@ -10,3 +10,4 @@ data:
   LOG_LEVEL: "info"
   CORS_ALLOWED_ORIGINS: ""
   IMAGE_BASE_URL: https://cdn.keautybeautywarehouse.com/images/
+  PDF_BROWSER_CDP_URL: http://localhost:9222
