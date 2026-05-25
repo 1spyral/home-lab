@@ -14,12 +14,12 @@ patches:
       version: v1
       kind: Deployment
       name: kbw-productsdisplay-api
-    # - path: web-configmap.yaml
-    # - path: web-secrets.enc.yaml
+      # - path: web-configmap.yaml
+      # - path: web-secrets.enc.yaml
 images:
   # - name: ghcr.io/1spyral/kbw-productsdisplay
   #   newTag: latest
   #   digest: sha256:da09034eae8b1a76b5c08b31f1645f443dc9359b1c857246b06fad455822ab16 # {"$imagepolicy": "flux-system:kbw-productsdisplay:digest"}
   - name: ghcr.io/1spyral/productsdisplay-api
     newTag: latest
-    digest: sha256:a83d58946e125fec74576d4e1112f4b80fcc4664e4b19ad7aba0cd3c909645ab # {"$imagepolicy": "flux-system:kbw-productsdisplay-api:digest"}
+    digest: sha256:770603cae5d0e909553091aab4ce26e4cf559f981afc1c17512840a367152cab # {"$imagepolicy": "flux-system:kbw-productsdisplay-api:digest"}
