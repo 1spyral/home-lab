@@ -1,4 +1,16 @@
 creation_rules:
+  # Observer key
+  - path_regex: jobs/internship-observer/.*\.ya?ml$
+    encrypted_regex: "^(data|stringData)$"
+    kms: []
+    gcp_kms: []
+    azure_keyvault: []
+    hc_vault: []
+    age:
+      - "age1nkevsjrus2tls3xr2tf6wzypjzualle59evnrf9ucedphfkrmyxq9x569z"
+      - "age18z3fy59zgysfr8jj3wlpsha2hjqjwm6glaes29wefxa3fadd6a4qnyh873"
+    pgp: []
+  # Global key
   - path_regex: (cluster/.*/.*|apps/.*/.*/.*|jobs/.*/.*)\.ya?ml$
     encrypted_regex: "^(data|stringData)$"
     kms: []
