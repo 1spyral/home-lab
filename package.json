@@ -16,6 +16,6 @@
     "format:check": "prettier --check '**/*.{yaml,yml,json,md}'"
   },
   "devDependencies": {
-    "prettier": "3.8.4"
+    "prettier": "3.9.4"
   }
 }
