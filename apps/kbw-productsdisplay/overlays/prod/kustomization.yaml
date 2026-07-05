@@ -8,14 +8,8 @@ patches:
   - path: ghcr-pull-secret.enc.yaml
   - path: api-configmap.yaml
   - path: api-secrets.enc.yaml
-  - path: ../../../../components/playwright-sidecar.patch.yaml
-    target:
-      group: apps
-      version: v1
-      kind: Deployment
-      name: kbw-productsdisplay-api
-      # - path: web-configmap.yaml
-      # - path: web-secrets.enc.yaml
+  # - path: web-configmap.yaml
+  # - path: web-secrets.enc.yaml
 images:
   # - name: ghcr.io/1spyral/kbw-productsdisplay
   #   newTag: latest

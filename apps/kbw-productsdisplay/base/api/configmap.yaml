@@ -9,3 +9,4 @@ data:
   PORT: "3001"
   LOG_LEVEL: "info"
   CORS_ALLOWED_ORIGINS: ""
+  PDF_BROWSER_CDP_URL: http://localhost:9222
