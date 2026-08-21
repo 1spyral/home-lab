@@ -3,6 +3,16 @@ fullnameOverride: kube-prometheus-stack
 grafana:
   enabled: true
 
+  additionalDataSources:
+    - name: Loki
+      type: loki
+      uid: loki
+      url: http://loki-gateway.monitoring.svc.cluster.local
+      access: proxy
+      jsonData:
+        maxLines: 1000
+        timeout: 60
+
   persistence:
     enabled: true
     type: pvc
