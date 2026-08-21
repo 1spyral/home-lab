@@ -1,0 +1,71 @@
+discovery.kubernetes "pods" {
+  role = "pod"
+
+  selectors {
+    role  = "pod"
+    field = "spec.nodeName=" + coalesce(sys.env("HOSTNAME"), constants.hostname)
+  }
+}
+
+discovery.relabel "pod_logs" {
+  targets = discovery.kubernetes.pods.targets
+
+  rule {
+    source_labels = ["__meta_kubernetes_pod_label_observability_gloop_me_logs"]
+    regex         = "true"
+    action        = "keep"
+  }
+
+  rule {
+    source_labels = ["__meta_kubernetes_namespace"]
+    target_label  = "namespace"
+  }
+
+  rule {
+    source_labels = ["__meta_kubernetes_pod_name"]
+    target_label  = "pod"
+  }
+
+  rule {
+    source_labels = ["__meta_kubernetes_pod_container_name"]
+    target_label  = "container"
+  }
+
+  rule {
+    source_labels = ["__meta_kubernetes_pod_node_name"]
+    target_label  = "node"
+  }
+
+  rule {
+    source_labels = ["__meta_kubernetes_pod_label_app_kubernetes_io_name"]
+    target_label  = "app"
+  }
+
+  rule {
+    source_labels = ["namespace", "container"]
+    separator     = "/"
+    target_label  = "job"
+    replacement   = "$1/$2"
+  }
+}
+
+loki.source.kubernetes "pod_logs" {
+  targets    = discovery.relabel.pod_logs.output
+  forward_to = [loki.process.pod_logs.receiver]
+}
+
+loki.process "pod_logs" {
+  stage.static_labels {
+    values = {
+      cluster = "home-lab",
+    }
+  }
+
+  forward_to = [loki.write.default.receiver]
+}
+
+loki.write "default" {
+  endpoint {
+    url = "http://loki-gateway.monitoring.svc.cluster.local/loki/api/v1/push"
+  }
+}

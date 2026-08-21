@@ -1,0 +1,53 @@
+crds:
+  create: false
+
+alloy:
+  configMap:
+    create: false
+    name: alloy-config
+    key: config.alloy
+  clustering:
+    enabled: false
+  enableReporting: false
+  mounts:
+    varlog: false
+    dockercontainers: false
+  resources:
+    requests:
+      cpu: 50m
+      memory: 128Mi
+    limits:
+      memory: 512Mi
+
+controller:
+  type: daemonset
+  tolerations:
+    - operator: Exists
+
+rbac:
+  create: true
+  rules:
+    - apiGroups:
+        - ""
+      resources:
+        - namespaces
+        - pods
+        - pods/log
+      verbs:
+        - get
+        - list
+        - watch
+  clusterRules:
+    - apiGroups:
+        - ""
+      resources:
+        - pods
+      verbs:
+        - get
+        - list
+        - watch
+
+serviceMonitor:
+  enabled: true
+  additionalLabels:
+    release: kube-prometheus-stack
