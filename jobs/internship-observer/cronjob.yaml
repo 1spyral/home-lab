@@ -9,6 +9,9 @@ spec:
     spec:
       backoffLimit: 0
       template:
+        metadata:
+          labels:
+            observability.gloop.me/logs: "true"
         spec:
           restartPolicy: Never
           containers:
