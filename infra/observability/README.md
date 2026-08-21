@@ -1,18 +1,14 @@
-# Monitoring
+# Observability
 
-[Helm Chart](https://artifacthub.io/packages/helm/prometheus-community/kube-prometheus-stack)
+This directory contains the cluster observability platform. Components are deployed into the `monitoring` namespace and managed by Flux.
 
-This stack deploys `kube-prometheus-stack` into the `monitoring` namespace for cluster observability. In this repo it is configured to run Prometheus, Alertmanager, and Grafana, with Grafana exposed through an ingress.
+## Components
 
-**Components**
+| Component                                         | Purpose                            |
+| ------------------------------------------------- | ---------------------------------- |
+| [`kube-prometheus-stack`](kube-prometheus-stack/) | Metrics, dashboards, and alerting. |
 
-| Component        | Path               | Ingress Endpoint            | Notes                                                                         |
-| ---------------- | ------------------ | --------------------------- | ----------------------------------------------------------------------------- |
-| HelmRelease      | `helmrelease.yaml` |                             | Installs `kube-prometheus-stack` into the `monitoring` namespace.             |
-| Values ConfigMap | `values.yaml`      |                             | Enables Grafana, Prometheus, and Alertmanager and sets persistence/retention. |
-| Grafana Ingress  | `ingress.yaml`     | `https://grafana.gloop.me/` | Routes to the `kube-prometheus-stack-grafana` service through Traefik.        |
-
-**Apply**
+## Apply
 
 ```sh
 kubectl apply -k infra/observability
