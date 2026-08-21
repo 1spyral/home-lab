@@ -15,5 +15,5 @@ This stack deploys `kube-prometheus-stack` into the `monitoring` namespace for c
 **Apply**
 
 ```sh
-kubectl apply -k infra/monitoring
+kubectl apply -k infra/observability
 ```

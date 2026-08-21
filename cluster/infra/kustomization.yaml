@@ -8,5 +8,5 @@ resources:
   - ../../infra/coredns/
   - ../../infra/helm-repos/
   - ../../infra/longhorn/
-  - ../../infra/monitoring/
+  - ../../infra/observability/
   - ../../infra/traefik/
