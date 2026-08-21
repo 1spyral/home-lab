@@ -6,6 +6,7 @@ This directory contains the cluster observability platform. Components are deplo
 
 | Component                                         | Purpose                            |
 | ------------------------------------------------- | ---------------------------------- |
+| [`alloy`](alloy/)                                 | Cluster-wide telemetry collection. |
 | [`kube-prometheus-stack`](kube-prometheus-stack/) | Metrics, dashboards, and alerting. |
 | [`loki`](loki/)                                   | Log storage and querying.          |
 
