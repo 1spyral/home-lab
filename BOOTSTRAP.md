@@ -132,13 +132,13 @@ systemctl status open-iscsi
 
 ## 7. Bootstrap Flux
 
-Once CoreDNS is running and all required secrets are populated and encrypted, deploy the Flux system manifests using the KSOPS-enabled helper script:
+Once CoreDNS is running and all required secrets are populated and encrypted, apply the Flux system manifests using the KSOPS-enabled helper script:
 
 ```sh
-bun run deploy cluster/flux-system
+bun run apply cluster/flux-system
 ```
 
-This uses `scripts/deploy.sh` (via `bun`) to run `kustomize build --enable-alpha-plugins` so the KSOPS generator can decrypt SOPS secrets before applying them.
+This uses `scripts/apply.sh` (via `bun`) to run `kustomize build --enable-alpha-plugins` so the KSOPS generator can decrypt SOPS secrets before applying them.
 
 Watch Flux components come up:
 
