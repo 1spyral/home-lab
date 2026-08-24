@@ -1,6 +1,6 @@
 creation_rules:
   # Observer key
-  - path_regex: jobs/internship-observer/.*\.ya?ml$
+  - path_regex: (jobs/internship-observer/.*|cluster/flux-system/images/internship-observer/ghcr-pull-secret\.enc)\.ya?ml$
     encrypted_regex: "^(data|stringData)$"
     kms: []
     gcp_kms: []
