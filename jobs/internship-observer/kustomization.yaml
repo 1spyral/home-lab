@@ -10,4 +10,4 @@ resources:
 images:
   - name: ghcr.io/williamwu277/observer
     newTag: latest
-    digest: "sha256:89ba71715ad884882e33f0e4f824ec600b60353ff720fbde93b9a5560105f5db" # {"$imagepolicy": "flux-system:internship-observer:digest"}
+    digest: "sha256:0bc42469904c8c871b6f2b0abf4f6175f6328d1290c0a9fd5f8397338b523b07" # {"$imagepolicy": "flux-system:internship-observer:digest"}
