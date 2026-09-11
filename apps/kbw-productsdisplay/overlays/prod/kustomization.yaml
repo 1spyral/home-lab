@@ -8,12 +8,12 @@ patches:
   - path: ghcr-pull-secret.enc.yaml
   - path: api-configmap.yaml
   - path: api-secrets.enc.yaml
-  # - path: web-configmap.yaml
-  # - path: web-secrets.enc.yaml
+    # - path: web-configmap.yaml
+    # - path: web-secrets.enc.yaml
 images:
   # - name: ghcr.io/1spyral/kbw-productsdisplay
   #   newTag: latest
   #   digest: sha256:da09034eae8b1a76b5c08b31f1645f443dc9359b1c857246b06fad455822ab16 # {"$imagepolicy": "flux-system:kbw-productsdisplay:digest"}
   - name: ghcr.io/1spyral/productsdisplay-api
     newTag: latest
-    digest: sha256:e6f4102face0aeb4e4648c2a47d4290cbcea0774202e03abe4230ec975cc334d # {"$imagepolicy": "flux-system:kbw-productsdisplay-api:digest"}
+    digest: sha256:9063d559189054f1768399c1c44b86c32c53e6fbb95d2edec537c9b7d951c709 # {"$imagepolicy": "flux-system:kbw-productsdisplay-api:digest"}
