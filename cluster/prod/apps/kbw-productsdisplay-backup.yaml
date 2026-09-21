@@ -12,5 +12,7 @@ spec:
     name: flux-system
   wait: true
   timeout: 5m
-  dependsOn:
-    - name: kbw-productsdisplay
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age
