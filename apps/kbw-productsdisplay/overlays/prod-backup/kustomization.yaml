@@ -3,5 +3,7 @@ kind: Kustomization
 namespace: kbw-productsdisplay
 
 resources:
-  - backup-pvc.yaml
-  - backup-cronjob.yaml
+  - ../../backup
+
+patches:
+  - path: secrets.enc.yaml
