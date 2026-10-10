@@ -1,3 +1,18 @@
 package-lock.json
 bun.lock
 node_modules
+
+# OpenTofu / Terraform local data and credentials
+**/.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan
+*.plan
+*.tfvars
+*.tfvars.json
+*.auto.tfvars
+*.auto.tfvars.json
+*.tfbackend
+crash.log
+crash.*.log
+# Keep .terraform.lock.hcl tracked.
