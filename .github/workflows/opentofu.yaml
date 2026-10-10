@@ -1,0 +1,50 @@
+name: OpenTofu Checks
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  format:
+    name: OpenTofu Formatting
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+      - uses: opentofu/setup-opentofu@v2
+        with:
+          tofu_version_file: .opentofu-version
+          tofu_wrapper: false
+      - name: Check HCL formatting
+        run: tofu fmt -check -recursive terraform
+
+  validate:
+    name: Validate ${{ matrix.root }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        root:
+          - terraform/bootstrap
+          - terraform/cloudflare
+    defaults:
+      run:
+        working-directory: ${{ matrix.root }}
+    env:
+      TF_IN_AUTOMATION: "true"
+    steps:
+      - uses: actions/checkout@v5
+      - uses: opentofu/setup-opentofu@v2
+        with:
+          tofu_version_file: .opentofu-version
+          tofu_wrapper: false
+      - name: Initialize providers without remote state
+        run: tofu init -backend=false -input=false -lockfile=readonly -no-color
+      - name: Validate configuration
+        run: tofu validate -no-color
