@@ -1,0 +1,10 @@
+billing_account_id = "XXXXXX-XXXXXX-XXXXXX"
+
+# Choose a valid GCS region or multi-region before creating the bucket.
+# Toronto is shown here; changing this later requires bucket replacement.
+location = "northamerica-northeast2"
+
+# Personal projects can leave both parent IDs unset.
+# org_id = "123456789012"
+# folder_id = "123456789012"
+# bucket_name = "your-globally-unique-state-bucket"
