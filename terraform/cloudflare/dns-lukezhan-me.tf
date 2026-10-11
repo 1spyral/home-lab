@@ -1,4 +1,4 @@
-resource "cloudflare_dns_record" "terraform_managed_resource_36540a91e54a354a2c42d61a51654c02_0" {
+resource "cloudflare_dns_record" "lukezhan_me_apex_a" {
   content  = var.home_lab_ip
   name     = "lukezhan.me"
   proxied  = true
@@ -9,7 +9,7 @@ resource "cloudflare_dns_record" "terraform_managed_resource_36540a91e54a354a2c4
   settings = {}
 }
 
-resource "cloudflare_dns_record" "terraform_managed_resource_73d9a49fab30a9af500772928e2b13f6_1" {
+resource "cloudflare_dns_record" "lukezhan_me_sig1_domainkey_cname" {
   content = "sig1.dkim.lukezhan.me.at.icloudmailadmin.com"
   name    = "sig1._domainkey.lukezhan.me"
   proxied = false
@@ -22,7 +22,7 @@ resource "cloudflare_dns_record" "terraform_managed_resource_73d9a49fab30a9af500
   }
 }
 
-resource "cloudflare_dns_record" "terraform_managed_resource_99073cd4ea01f07483bfd3ad81600996_2" {
+resource "cloudflare_dns_record" "lukezhan_me_apex_mx_icloud_mx01" {
   content  = "mx01.mail.icloud.com"
   name     = "lukezhan.me"
   priority = 10
@@ -34,7 +34,7 @@ resource "cloudflare_dns_record" "terraform_managed_resource_99073cd4ea01f07483b
   settings = {}
 }
 
-resource "cloudflare_dns_record" "terraform_managed_resource_8b2be81637dcfbeafa38560b63dd5aa1_3" {
+resource "cloudflare_dns_record" "lukezhan_me_apex_mx_icloud_mx02" {
   content  = "mx02.mail.icloud.com"
   name     = "lukezhan.me"
   priority = 10
@@ -46,7 +46,7 @@ resource "cloudflare_dns_record" "terraform_managed_resource_8b2be81637dcfbeafa3
   settings = {}
 }
 
-resource "cloudflare_dns_record" "terraform_managed_resource_e18286f7f0c11c1f2a8193c9c162d502_4" {
+resource "cloudflare_dns_record" "lukezhan_me_apex_txt_apple_verification" {
   content  = "\"apple-domain=3DMCrRjccpSw9Kr9\""
   name     = "lukezhan.me"
   proxied  = false
@@ -57,7 +57,7 @@ resource "cloudflare_dns_record" "terraform_managed_resource_e18286f7f0c11c1f2a8
   settings = {}
 }
 
-resource "cloudflare_dns_record" "terraform_managed_resource_488dfe0683186c47aa40f754308d716d_5" {
+resource "cloudflare_dns_record" "lukezhan_me_apex_txt_spf" {
   content  = "\"v=spf1 include:icloud.com ~all\""
   name     = "lukezhan.me"
   proxied  = false
