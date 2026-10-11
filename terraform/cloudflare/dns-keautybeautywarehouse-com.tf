@@ -301,17 +301,6 @@ resource "cloudflare_dns_record" "keautybeautywarehouse_com_dmarc_txt_reject" {
   settings = {}
 }
 
-resource "cloudflare_dns_record" "keautybeautywarehouse_com_dmarc_txt_none" {
-  content  = "\"v=DMARC1; p=none;\""
-  name     = "_dmarc.keautybeautywarehouse.com"
-  proxied  = false
-  tags     = []
-  ttl      = 1
-  type     = "TXT"
-  zone_id  = "14b40d53b1989b793e2cdc381a31056c"
-  settings = {}
-}
-
 resource "cloudflare_dns_record" "keautybeautywarehouse_com_wildcard_domainkey_txt" {
   content  = "\"v=DKIM1; p=\""
   name     = "*._domainkey.keautybeautywarehouse.com"
