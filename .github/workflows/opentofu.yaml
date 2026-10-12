@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
       - uses: opentofu/setup-opentofu@v2
         with:
           tofu_version_file: .opentofu-version
@@ -39,7 +39,7 @@ jobs:
     env:
       TF_IN_AUTOMATION: "true"
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
       - uses: opentofu/setup-opentofu@v2
         with:
           tofu_version_file: .opentofu-version
