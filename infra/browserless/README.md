@@ -19,7 +19,7 @@ Both protocols use `ws://browserless.browserless.svc.cluster.local:3000`:
 | Playwright | `/chromium/playwright?token=TOKEN` | `chromium.connect()`          |
 | CDP        | `/chromium?token=TOKEN`            | `chromium.connect_over_cdp()` |
 
-Use the token from `secrets.enc.yaml`. Defaults: two concurrent sessions, four queued requests, five-minute timeout.
+Use the token from `secrets.enc.yaml`. Defaults: four concurrent sessions, four queued requests, no session timeout.
 
 Edit shared settings in `configmap.yaml`, then restart with `kubectl -n browserless rollout restart deployment/browserless` after the ConfigMap is applied.
 

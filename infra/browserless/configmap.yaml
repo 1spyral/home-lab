@@ -6,6 +6,6 @@ metadata:
 data:
   HOST: "0.0.0.0"
   PORT: "3000"
-  CONCURRENT: "2"
+  CONCURRENT: "4"
   QUEUED: "4"
-  TIMEOUT: "300000"
+  TIMEOUT: "0"
