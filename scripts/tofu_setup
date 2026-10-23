@@ -1,0 +1,217 @@
+#!/usr/bin/env bash
+# Source in Bash or Zsh. Only CLOUDFLARE_API_TOKEN is exported to the caller.
+if [ -n "${BASH_VERSION-}" ]; then
+  if [ "${BASH_SOURCE[0]}" = "$0" ]; then
+    printf '%s\n' 'Run: source scripts/tofu_setup' >&2
+    exit 1
+  fi
+elif [ -n "${ZSH_VERSION-}" ]; then
+  case "$ZSH_EVAL_CONTEXT" in
+    *:file) ;;
+    *) printf '%s\n' 'Run: source scripts/tofu_setup' >&2; exit 1 ;;
+  esac
+else
+  printf '%s\n' 'Source scripts/tofu_setup in Bash or Zsh.' >&2
+  return 1 2>/dev/null || exit 1
+fi
+
+# Subshells isolate CLI environment and working directory from the caller.
+_home_lab_cf() (
+  unset CLOUDFLARE_API_TOKEN
+  cd -- "$repo_root" || exit 1
+  node "$cf_bin" "$@" --profile home-lab-tofu
+)
+
+_home_lab_cf_token() (
+  export CLOUDFLARE_API_TOKEN="$token"
+  cd -- "$repo_root" || exit 1
+  node "$cf_bin" "$@"
+)
+
+_home_lab_keychain_read() {
+  /usr/bin/security find-generic-password -s home-lab.opentofu.cloudflare-api-token \
+    -a home-lab-tofu -w 2>/dev/null
+}
+
+_home_lab_keychain_write() {
+  local token_hex verified_token
+  # Password bytes travel over stdin, never in external process arguments.
+  token_hex="$(printf '%s' "$token" | od -An -v -tx1 | tr -d ' \n')" || return 1
+  printf 'add-generic-password -U -s home-lab.opentofu.cloudflare-api-token -a home-lab-tofu -X %s\n' "$token_hex" |
+    /usr/bin/security -i >/dev/null 2>&1 || return 1
+  # security -i can exit zero even when its subcommand fails.
+  verified_token="$(_home_lab_keychain_read)" || return 1
+  [ "$verified_token" = "$token" ]
+}
+
+_home_lab_policy_canonical() {
+  jq -cS '[.[] | {effect, resources, permission_groups: ([.permission_groups[] | {id}] | sort_by(.id))}] | sort_by(tojson)'
+}
+
+_home_lab_tofu_setup() {
+  local script_path repo_root cf_bin executable cf_version auth auth_file
+  local token saved_token legacy_file keychain_rc managed_token
+  local zones zone zone_info account candidate groups policies body created token_id existing
+  local desired_policy current_policy permission_count
+  if [ -n "${BASH_VERSION-}" ]; then
+    script_path="${BASH_SOURCE[0]}"
+  else
+    script_path="${(%):-%x}"
+  fi
+  repo_root="$(cd -- "$(dirname -- "$script_path")/.." && pwd -P)" || return 1
+  cf_bin="$repo_root/node_modules/cf/bin/cf"
+  for executable in node jq gcloud; do
+    if ! command -v "$executable" >/dev/null 2>&1; then
+      printf 'Setup failed: install %s first.\n' "$executable" >&2
+      return 1
+    fi
+  done
+  cf_version="$(node "$cf_bin" --version)" || return 1
+  printf '%s\n' 'Checking Google Application Default Credentials...' >&2
+  if ! gcloud auth application-default print-access-token --quiet >/dev/null 2>&1; then
+    if [ -n "${GOOGLE_APPLICATION_CREDENTIALS-}" ] || [ -n "${CI-}" ]; then
+      printf '%s\n' 'Setup failed: fix the supplied Google Application Default Credentials.' >&2
+      return 1
+    fi
+    gcloud auth application-default login >&2 || return 1
+    gcloud auth application-default print-access-token --quiet >/dev/null || return 1
+  fi
+
+  zones="$(sed -nE 's/^[[:space:]]*zone_id[[:space:]]*=[[:space:]]*"([[:xdigit:]]{32})".*/\1/p' \
+    "$repo_root"/terraform/cloudflare/*.tf | sort -u)" || return 1
+  if [ -z "$zones" ]; then
+    printf '%s\n' 'Setup failed: no Cloudflare zone IDs found.' >&2
+    return 1
+  fi
+
+  token="${CLOUDFLARE_API_TOKEN-}"
+  saved_token=''
+  managed_token=0
+  if [ -z "${CI-}" ] && [ "$(uname -s)" = Darwin ]; then
+    if saved_token="$(_home_lab_keychain_read)"; then
+      if [ -z "$saved_token" ]; then
+        printf '%s\n' 'Setup failed: the Keychain token is empty.' >&2
+        return 1
+      fi
+    else
+      keychain_rc=$?
+      if [ "$keychain_rc" -ne 44 ]; then
+        printf '%s\n' 'Setup failed: cannot read Keychain. Unlock your login keychain and retry.' >&2
+        return 1
+      fi
+    fi
+    legacy_file="$repo_root/terraform/.terraform/cloudflare-api-token.json"
+    if [ -f "$legacy_file" ]; then
+      token="$(jq -er '.token | select(type == "string" and length > 0)' "$legacy_file")" || return 1
+      if [ -n "$saved_token" ] && [ "$saved_token" != "$token" ]; then
+        printf '%s\n' 'Setup failed: Keychain and the legacy file contain different tokens.' >&2
+        return 1
+      fi
+      _home_lab_keychain_write || return 1
+      saved_token="$token"
+      rm -- "$legacy_file" || return 1
+      token="${CLOUDFLARE_API_TOKEN-}"
+      printf '%s\n' 'Migrated the legacy token to Keychain and removed the plaintext file.' >&2
+    fi
+    if [ -z "$token" ] || [ "$token" = "$saved_token" ]; then
+      token="$saved_token"
+      managed_token=1
+    fi
+  elif [ -z "$token" ]; then
+    printf '%s\n' 'Setup failed: supply CLOUDFLARE_API_TOKEN in CI or on platforms without macOS Keychain.' >&2
+    return 1
+  fi
+
+  if [ "$managed_token" -eq 1 ]; then
+    # Nonsecret metadata records that this CLI version completed its full-scope
+    # login. A changed/reduced profile or CLI upgrade requires another approval.
+    auth_file="$repo_root/terraform/.terraform/cloudflare-oauth-scopes.json"
+    auth="$(_home_lab_cf auth whoami 2>/dev/null)" || auth='{}'
+    if [ ! -f "$auth_file" ] || ! jq -e --arg version "$cf_version" --argjson auth "$auth" '
+      .cfVersion == $version and $auth.authenticated == true and $auth.tokenValid == true
+      and (.scopes | length > 0) and ((.scopes | sort) == ($auth.scopes | sort))
+    ' "$auth_file" >/dev/null 2>&1; then
+      printf '%s\n' 'Approving full Cloudflare CLI access for account-wide token management...' >&2
+      (
+        unset CLOUDFLARE_API_TOKEN
+        cd -- "$repo_root" || exit 1
+        node "$cf_bin" auth create home-lab-tofu >&2
+      ) || return 1
+      auth="$(_home_lab_cf auth whoami)" || return 1
+      printf '%s' "$auth" | jq -e '.authenticated == true and .tokenValid == true and (.scopes | length > 0)' >/dev/null || return 1
+      mkdir -p -- "$(dirname -- "$auth_file")" || return 1
+      printf '%s' "$auth" | jq --arg version "$cf_version" '{cfVersion: $version, scopes: .scopes}' > "$auth_file" || return 1
+    fi
+
+    # Anchor the broad grant to the one account containing this repository's zones.
+    account=''
+    while IFS= read -r zone; do
+      zone_info="$(_home_lab_cf zones get --zone "$zone")" || return 1
+      candidate="$(printf '%s' "$zone_info" | jq -er '.account.id | select(type == "string" and length > 0)')" || return 1
+      if [ -n "$account" ] && [ "$account" != "$candidate" ]; then
+        printf '%s\n' 'Setup failed: configured zones span multiple accounts. Supply an external token explicitly.' >&2
+        return 1
+      fi
+      account="$candidate"
+    done <<EOF
+$zones
+EOF
+    groups="$(CLOUDFLARE_ACCOUNT_ID="$account" _home_lab_cf accounts tokens permission-groups list)" || return 1
+    # Ask for all account/zone permissions Cloudflare reports grantable. The DNS
+    # Write flag is known to be false for OAuth callers even when creation works;
+    # retain that existing permission and let the API perform the final check.
+    policies="$(printf '%s' "$groups" | jq -ce --arg account "$account" '
+      [.[] | select(.is_selectable != false or .id == "4755a26eedb94da69e1066d98aa820be")] as $groups |
+      [
+        {effect: "allow", permission_groups: [$groups[] | select(.scopes | index("com.cloudflare.api.account")) | {id}],
+          resources: {("com.cloudflare.api.account." + $account): "*"}},
+        {effect: "allow", permission_groups: [$groups[] | select(.scopes | index("com.cloudflare.api.account.zone")) | {id}],
+          resources: {("com.cloudflare.api.account." + $account): {"com.cloudflare.api.account.zone.*": "*"}}}
+      ] | map(select(.permission_groups | length > 0)) | select(length > 0)
+    ')" || return 1
+    permission_count="$(printf '%s' "$policies" | jq '[.[].permission_groups[].id] | unique | length')" || return 1
+    body="$(jq -nc --argjson policies "$policies" '{name: "home-lab OpenTofu", policies: $policies}')" || return 1
+    if [ -n "$token" ]; then
+      existing="$(CLOUDFLARE_ACCOUNT_ID="$account" _home_lab_cf_token accounts tokens verify)" || return 1
+      token_id="$(printf '%s' "$existing" | jq -er '.id | select(type == "string" and length > 0)')" || return 1
+      existing="$(CLOUDFLARE_ACCOUNT_ID="$account" _home_lab_cf accounts tokens get "$token_id")" || return 1
+      desired_policy="$(printf '%s' "$policies" | _home_lab_policy_canonical)" || return 1
+      current_policy="$(printf '%s' "$existing" | jq '.policies' | _home_lab_policy_canonical)" || return 1
+      if [ "$desired_policy" != "$current_policy" ]; then
+        # Preserve expiry, IP restrictions, and status when replacing policies.
+        body="$(printf '%s' "$existing" | jq -c --argjson desired "$body" '
+          with_entries(select(.key == "condition" or .key == "expires_on" or .key == "not_before" or .key == "status")) + $desired
+        ')" || return 1
+        printf 'Updating the existing token to %s account/zone permission groups...\n' "$permission_count" >&2
+        CLOUDFLARE_ACCOUNT_ID="$account" _home_lab_cf accounts tokens update "$token_id" --body "$body" >/dev/null || return 1
+      else
+        printf 'Reusing the existing token with %s account/zone permission groups.\n' "$permission_count" >&2
+      fi
+    else
+      printf 'Creating an account-wide token with %s permission groups...\n' "$permission_count" >&2
+      created="$(CLOUDFLARE_ACCOUNT_ID="$account" _home_lab_cf accounts tokens create --body "$body")" || return 1
+      token="$(printf '%s' "$created" | jq -er '.value | select(type == "string" and length > 0)')" || return 1
+      if ! _home_lab_keychain_write; then
+        token_id="$(printf '%s' "$created" | jq -r '.id')"
+        printf 'Setup failed: token %s was created but could not be saved to Keychain. Revoke it in Cloudflare before retrying.\n' "$token_id" >&2
+        return 1
+      fi
+    fi
+  fi
+
+  printf '%s\n' 'Checking Cloudflare DNS access...' >&2
+  while IFS= read -r zone; do
+    _home_lab_cf_token dns records list --zone "$zone" --per-page 1 >/dev/null || return 1
+  done <<EOF
+$zones
+EOF
+  export CLOUDFLARE_API_TOKEN="$token"
+  printf '%s\n' 'Setup complete. CLOUDFLARE_API_TOKEN is exported in this shell.' >&2
+}
+
+if _home_lab_tofu_setup; then
+  unset -f _home_lab_tofu_setup _home_lab_cf _home_lab_cf_token _home_lab_keychain_read _home_lab_keychain_write _home_lab_policy_canonical
+else
+  unset -f _home_lab_tofu_setup _home_lab_cf _home_lab_cf_token _home_lab_keychain_read _home_lab_keychain_write _home_lab_policy_canonical
+  return 1
+fi
