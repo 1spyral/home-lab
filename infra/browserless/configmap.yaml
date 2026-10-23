@@ -1,0 +1,11 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: browserless-config
+data:
+  HOST: "0.0.0.0"
+  PORT: "3000"
+  CONCURRENT: "2"
+  QUEUED: "4"
+  TIMEOUT: "300000"
