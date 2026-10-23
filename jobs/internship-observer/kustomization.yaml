@@ -9,5 +9,5 @@ resources:
   - cronjob.yaml
 images:
   - name: ghcr.io/williamwu277/observer
-    newTag: latest
+    newTag: remote
     digest: "sha256:208fa3141fd4eb155d167af86b220f46375b42d89f92be241e798c7ea17c4b2a" # {"$imagepolicy": "flux-system:internship-observer:digest"}

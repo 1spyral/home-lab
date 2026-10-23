@@ -9,7 +9,7 @@ spec:
   imageRepositoryRef:
     name: internship-observer
   filterTags:
-    pattern: "^latest$"
+    pattern: "^remote$"
   policy:
     alphabetical:
       order: asc
