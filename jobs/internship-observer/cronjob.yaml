@@ -17,6 +17,9 @@ spec:
           containers:
             - name: internship-observer
               image: ghcr.io/williamwu277/observer
+              env:
+                - name: PLAYWRIGHT_SERVER_URL
+                  value: ws://127.0.0.1:3000/
               envFrom:
                 - secretRef:
                     name: internship-observer-secrets
@@ -32,6 +35,38 @@ spec:
                 limits:
                   cpu: 1000m
                   memory: 1Gi
+          initContainers:
+            - name: playwright
+              image: mcr.microsoft.com/playwright:v1.61.0-jammy
+              restartPolicy: Always
+              command:
+                - /bin/sh
+                - -lc
+              args:
+                - >
+                  exec npx -y playwright@1.61.0 run-server
+                  --host 0.0.0.0
+                  --port 3000
+              ports:
+                - containerPort: 3000
+                  name: playwright
+              startupProbe:
+                tcpSocket:
+                  port: playwright
+                periodSeconds: 1
+                failureThreshold: 120
+              env:
+                - name: HOME
+                  value: /home/pwuser
+              resources:
+                requests:
+                  cpu: "500m"
+                  memory: "1Gi"
+                limits:
+                  cpu: "2"
+                  memory: "3Gi"
+              securityContext:
+                allowPrivilegeEscalation: false
           imagePullSecrets:
             - name: ghcr-pull-secret
           volumes:
