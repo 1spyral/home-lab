@@ -14,8 +14,8 @@
     "lint": "yamllint .",
     "format": "prettier --write '**/*.{yaml,yml,json,md}'",
     "format:check": "prettier --check '**/*.{yaml,yml,json,md}'",
-    "format:terraform": "tofu fmt -recursive terraform",
-    "format:terraform:check": "tofu fmt -check -recursive terraform"
+    "format:opentofu": "tofu fmt -recursive opentofu",
+    "format:opentofu:check": "tofu fmt -check -recursive opentofu"
   },
   "devDependencies": {
     "cf": "1.0.0-beta.21",

@@ -78,7 +78,7 @@ _home_lab_tofu_setup() {
   fi
 
   zones="$(sed -nE 's/^[[:space:]]*zone_id[[:space:]]*=[[:space:]]*"([[:xdigit:]]{32})".*/\1/p' \
-    "$repo_root"/terraform/cloudflare/*.tf | sort -u)" || return 1
+    "$repo_root"/opentofu/cloudflare/*.tf | sort -u)" || return 1
   if [ -z "$zones" ]; then
     printf '%s\n' 'Setup failed: no Cloudflare zone IDs found.' >&2
     return 1
@@ -100,7 +100,7 @@ _home_lab_tofu_setup() {
         return 1
       fi
     fi
-    legacy_file="$repo_root/terraform/.terraform/cloudflare-api-token.json"
+    legacy_file="$repo_root/opentofu/.terraform/cloudflare-api-token.json"
     if [ -f "$legacy_file" ]; then
       token="$(jq -er '.token | select(type == "string" and length > 0)' "$legacy_file")" || return 1
       if [ -n "$saved_token" ] && [ "$saved_token" != "$token" ]; then
@@ -125,7 +125,7 @@ _home_lab_tofu_setup() {
   if [ "$managed_token" -eq 1 ]; then
     # Nonsecret metadata records that this CLI version completed its full-scope
     # login. A changed/reduced profile or CLI upgrade requires another approval.
-    auth_file="$repo_root/terraform/.terraform/cloudflare-oauth-scopes.json"
+    auth_file="$repo_root/opentofu/.terraform/cloudflare-oauth-scopes.json"
     auth="$(_home_lab_cf auth whoami 2>/dev/null)" || auth='{}'
     if [ ! -f "$auth_file" ] || ! jq -e --arg version "$cf_version" --argjson auth "$auth" '
       .cfVersion == $version and $auth.authenticated == true and $auth.tokenValid == true

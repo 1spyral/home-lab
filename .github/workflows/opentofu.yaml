@@ -21,7 +21,7 @@ jobs:
           tofu_version_file: .opentofu-version
           tofu_wrapper: false
       - name: Check HCL formatting
-        run: tofu fmt -check -recursive terraform
+        run: tofu fmt -check -recursive opentofu
 
   validate:
     name: Validate ${{ matrix.root }}
@@ -31,8 +31,8 @@ jobs:
       fail-fast: false
       matrix:
         root:
-          - terraform/bootstrap
-          - terraform/cloudflare
+          - opentofu/bootstrap
+          - opentofu/cloudflare
     defaults:
       run:
         working-directory: ${{ matrix.root }}

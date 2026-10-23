@@ -12,6 +12,6 @@ updates:
       interval: "weekly"
   - package-ecosystem: "opentofu"
     directories:
-      - "/terraform/*"
+      - "/opentofu/*"
     schedule:
       interval: "weekly"

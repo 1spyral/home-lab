@@ -38,11 +38,11 @@ The generated token is stored in macOS Keychain under service
 `home-lab.opentofu.cloudflare-api-token`, account `home-lab-tofu`. Setup sends the
 secret to Keychain over stdin rather than placing it in process arguments.
 Repeated setup calls reuse it, including from a new shell. If the old
-`terraform/.terraform/cloudflare-api-token.json` exists, setup migrates it to
+`opentofu/.terraform/cloudflare-api-token.json` exists, setup migrates it to
 Keychain, verifies the stored value, and then deletes the plaintext file. A failed
 migration leaves the original file intact.
 
-The Git-ignored `terraform/.terraform/cloudflare-oauth-scopes.json` stores only the
+The Git-ignored `opentofu/.terraform/cloudflare-oauth-scopes.json` stores only the
 CLI version and granted OAuth scope names, with no credentials. Setup uses it to
 reuse the full-scope login; a CLI upgrade or changed OAuth profile requires browser
 approval again.
@@ -63,10 +63,10 @@ ignored `terraform.tfvars` files (see each `terraform.tfvars.example`) or `TF_VA
 environment variables, and initialize each root yourself:
 
 ```sh
-tofu -chdir=terraform/cloudflare init
-tofu -chdir=terraform/cloudflare plan
-tofu -chdir=terraform/bootstrap init
-tofu -chdir=terraform/bootstrap plan
+tofu -chdir=opentofu/cloudflare init
+tofu -chdir=opentofu/cloudflare plan
+tofu -chdir=opentofu/bootstrap init
+tofu -chdir=opentofu/bootstrap plan
 ```
 
 For CI, provide `CLOUDFLARE_API_TOKEN` and working Google Application Default

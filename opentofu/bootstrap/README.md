@@ -16,11 +16,11 @@ and location. The default bucket name is `<generated-project-id>-tofu-state`.
 From the repository root:
 
 ```sh
-tofu -chdir=terraform/bootstrap init
-tofu -chdir=terraform/bootstrap fmt -check
-tofu -chdir=terraform/bootstrap validate
-tofu -chdir=terraform/bootstrap plan -out=bootstrap.tfplan
-tofu -chdir=terraform/bootstrap apply bootstrap.tfplan
+tofu -chdir=opentofu/bootstrap init
+tofu -chdir=opentofu/bootstrap fmt -check
+tofu -chdir=opentofu/bootstrap validate
+tofu -chdir=opentofu/bootstrap plan -out=bootstrap.tfplan
+tofu -chdir=opentofu/bootstrap apply bootstrap.tfplan
 ```
 
 ## Migrate bootstrap state
@@ -39,6 +39,6 @@ terraform {
 Then migrate and confirm the resulting plan has no changes:
 
 ```sh
-tofu -chdir=terraform/bootstrap init -migrate-state
-tofu -chdir=terraform/bootstrap plan
+tofu -chdir=opentofu/bootstrap init -migrate-state
+tofu -chdir=opentofu/bootstrap plan
 ```
