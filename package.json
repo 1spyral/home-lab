@@ -19,6 +19,6 @@
   },
   "devDependencies": {
     "cf": "1.0.0-beta.28",
-    "prettier": "3.9.10"
+    "prettier": "3.10.1"
   }
 }
